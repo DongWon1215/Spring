@@ -7,6 +7,8 @@ import java.sql.Connection;
 public class UserDAOImpl implements UserDAO {
     @Override
     public int insertUser(Connection conn, User user) {
+        String sql = "insert into ";
+
         return 0;
     }
 
