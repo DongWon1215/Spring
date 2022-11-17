@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1></h1>
+<h1>로그인 페이지</h1>
 <table>
     <tr>
         <td>아이디</td>

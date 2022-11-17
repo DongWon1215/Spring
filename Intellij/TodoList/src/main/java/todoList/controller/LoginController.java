@@ -24,7 +24,6 @@ public class LoginController {
     @PostMapping
     public String login(String id, String password)
     {
-        log.info("실패했다");
 //        if()
 //        return "/main";
 //
