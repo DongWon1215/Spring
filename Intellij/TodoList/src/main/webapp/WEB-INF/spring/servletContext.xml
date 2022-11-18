@@ -20,4 +20,6 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+    <bean id="Conn" class="todoList.Util.ConnectionProvider" scope="singleton"></bean>
+
 </beans>

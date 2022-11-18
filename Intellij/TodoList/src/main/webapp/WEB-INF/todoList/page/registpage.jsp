@@ -12,5 +12,24 @@
 </head>
 <body>
 
+<h1>TODO LIST</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>할일</td>
+            <td><input type="text" name="todo"></td>
+        </tr>
+        <tr>
+            <td>기한</td>
+            <td><input type="date" name="dueDate"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="reset">
+                <input type="submit" value = "register">
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

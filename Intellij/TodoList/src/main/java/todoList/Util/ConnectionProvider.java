@@ -1,5 +1,6 @@
 package todoList.Util;
 
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -9,15 +10,7 @@ import java.sql.SQLException;
 @Log4j2
 public class ConnectionProvider {
 
-    private static ConnectionProvider instance = new ConnectionProvider();
-
-    public static ConnectionProvider getInstance()
-    {
-        if(instance == null)
-            instance = new ConnectionProvider();
-
-        return instance;
-    }
+    private HikariDataSource ds;
 
     public Connection getConnector() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
