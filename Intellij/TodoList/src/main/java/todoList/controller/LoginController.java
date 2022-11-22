@@ -19,31 +19,30 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     @Autowired
-    private LoginService service;
+    private LoginService loginservice;
 
     @GetMapping
     public String getloginPage()
     {
-        log.info("로그인 페이지로 왔다");
-        return "login/login";
+        return "login/loginPage";
     }
 
     @PostMapping
     public String login(@RequestParam("userId") String id, @RequestParam("userPw") String password, HttpServletRequest request) throws Exception {
-        User user = service.login(id,password);
+        User user = loginservice.login(id,password);
 
-        log.info("포스트 메세진 들어왔다");
+        log.info("여긴 되겠지");
         if(user != null)
         {
+            log.info("여기까진 됨");
             HttpSession session = request.getSession();
+            log.info("여기까진 되냐?");
             session.setAttribute("loginInfo", user.toLoginInfo());
-            log.info("난 간다");
-            return "/main";
+            return "redirect:/page/main";
         }
         else
         {
-            log.info("이걸 못가네");
-            return "login/login";
+            return "redirect:/login/login";
         }
     }
 }

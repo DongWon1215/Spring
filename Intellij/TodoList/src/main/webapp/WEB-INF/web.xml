@@ -43,7 +43,7 @@
     </filter-mapping>
 
     <welcome-file-list>
-    <welcome-file>/WEB-INF/todoList/login/login.jsp</welcome-file>
+    <welcome-file>/WEB-INF/todoList/login/loginPage.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

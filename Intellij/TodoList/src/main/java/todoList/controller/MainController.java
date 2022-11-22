@@ -13,9 +13,11 @@ public class MainController {
     @Autowired
     private TodoListService todoListService;
     @RequestMapping("/main")
-    public void getmainPage(Model model)
+    public String getmainPage(Model model)
     {
         model.addAttribute("todoList", todoListService.getTodoList());
+
+        return "/page/mainPage";
     }
 
 //    @RequestMapping("/main")

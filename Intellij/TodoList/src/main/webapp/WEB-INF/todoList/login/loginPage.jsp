@@ -28,7 +28,7 @@
     </tr>
     <tr>
         <td></td>
-        <td><a href="/login/memberRegistPage">회원가입</a></td>
+        <td><a href="/login/memberRegisterPage">회원가입</a></td>
     </tr>
 </table>
 </form>
