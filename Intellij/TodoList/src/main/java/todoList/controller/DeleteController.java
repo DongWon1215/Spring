@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import todoList.service.TodoService;
+import todoList.service.TodoListService;
 
 @Controller
 @Log4j2
 public class DeleteController {
 
     @Autowired
-    private TodoService todoService;
+    private TodoListService todoListService;
 
     @PostMapping("todoList/delete")
     public String removeTodo(@RequestParam("tno") int tno)

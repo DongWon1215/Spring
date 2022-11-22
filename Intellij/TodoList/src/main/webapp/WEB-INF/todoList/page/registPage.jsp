@@ -17,7 +17,7 @@
     <table>
         <tr>
             <td>할일</td>
-            <td><input type="text" name="todo"></td>
+            <td><input type="text" name="title"></td>
         </tr>
         <tr>
             <td>기한</td>

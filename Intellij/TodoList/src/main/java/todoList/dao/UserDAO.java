@@ -27,9 +27,13 @@ public class UserDAO {
 
     public int deleteUser(Connection conn, User user) throws SQLException
     {
-        String sql = "delete from user where userId = ?";
-
+        String sql = "delete from todotable where userId = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,user.getUserId());
+        pstmt.executeUpdate();
+
+        sql = "delete from user where userId = ?";
+        pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,user.getUserId());
 
         return pstmt.executeUpdate();
@@ -37,7 +41,7 @@ public class UserDAO {
 
     public int updateUser(Connection conn, String serial) throws SQLException
     {
-        String sql = "delete from user where serialNum = ?";
+        String sql = "update user set  where serialNum = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,serial);

@@ -14,9 +14,9 @@ public class ReadController {
     private TodoListService todoListService;
 
     @GetMapping("/todoList/read")
-    public void readTodo(Model model, @RequestParam("tno") int tno)
+    public void readTodo(Model model, @RequestParam("index") int index)
     {
-        model.addAttribute("todoList", todoListService.getTodo(tno));
+        model.addAttribute("todoList", todoListService.getTodobyIdx(index));
 
         //return "/todoList/read";
     }

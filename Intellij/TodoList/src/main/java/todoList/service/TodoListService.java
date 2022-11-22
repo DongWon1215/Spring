@@ -15,13 +15,26 @@ public class TodoListService {
 
     private TodoDAO todoDAO;
 
-    public TodoFile getTodo(int index)
+    public TodoFile getTodobyIdx(int index)
     {
         TodoFile todo = null;
 
         try {
             @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
             todo = todoDAO.selectByIndex(conn,index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return todo;
+    }
+    public TodoFile getTodobyId(String userId)
+    {
+        TodoFile todo = null;
+
+        try {
+            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
+            todo = todoDAO.selectById(conn,userId);
         } catch (Exception e) {
             e.printStackTrace();
         }

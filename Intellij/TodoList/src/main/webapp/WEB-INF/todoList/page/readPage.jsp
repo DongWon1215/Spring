@@ -15,11 +15,11 @@
 <table>
     <tr>
         <td>번호</td>
-        <td><input type="text" name="tno" value="${param.titleNo}" readonly></td>
+        <td><input type="text" name="index" value="${param.titleNo}" readonly></td>
     </tr>
     <tr>
         <td>할일 </td>
-        <td><input type="text" name="todo" value="${todo.todoTitle}" readonly> </td>
+        <td><input type="text" name="title" value="${todo.todoTitle}" readonly> </td>
     </tr>
     <tr>
         <td>기한 </td>
@@ -27,7 +27,7 @@
     </tr>
     <tr>
         <td>상태 </td>
-        <td><input type="checkbox" name="finished" ${todo.finished ? 'checked' : ''} > </td>
+        <td><input type="checkbox" name="finish" ${todo.finished ? 'checked' : ''} > </td>
     </tr>
 </table>
 

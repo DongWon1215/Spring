@@ -17,19 +17,19 @@
         <table>
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="uId"></td>
+                <td><input type="text" name="userId"></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="pw"></td>
+                <td><input type="password" name="userPw"></td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="uName"></td>
+                <td><input type="text" name="userName"></td>
             </tr>
             <tr>
                 <td>사진</td>
-                <td><input type="file" name="uPhoto"></td>
+                <td><input type="file" name="userPhoto"></td>
             </tr>
             <tr>
                 <td></td>
