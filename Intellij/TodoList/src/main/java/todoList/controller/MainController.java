@@ -5,17 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import todoList.service.MainService;
+import todoList.service.TodoListService;
 
 @Controller
 @Log4j2
 public class MainController {
     @Autowired
-    private MainService mainService;
+    private TodoListService todoListService;
     @RequestMapping("/main")
     public void getmainPage(Model model)
     {
-        model.addAttribute("todoList", mainService.getTodoList());
+        model.addAttribute("todoList", todoListService.getTodoList());
     }
 
 //    @RequestMapping("/main")

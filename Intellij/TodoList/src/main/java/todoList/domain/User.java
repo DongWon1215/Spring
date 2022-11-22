@@ -12,10 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @Builder
 public class User {
-    private int index;
     private String userId;
     private String userPw;
-    private String serialNum;
     private String userName;
     private String userPhoto;
 

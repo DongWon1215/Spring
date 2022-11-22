@@ -27,17 +27,17 @@ public class UserDAO {
 
     public int deleteUser(Connection conn, User user) throws SQLException
     {
-        String sql = "delete from where serialNum = ?";
+        String sql = "delete from user where userId = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,user.getSerialNum());
+        pstmt.setString(1,user.getUserId());
 
         return pstmt.executeUpdate();
     }
 
     public int updateUser(Connection conn, String serial) throws SQLException
     {
-        String sql = "delete from where serialNum = ?";
+        String sql = "delete from user where serialNum = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,serial);
@@ -49,7 +49,7 @@ public class UserDAO {
     public User selectUserByNamePassword(Connection conn, String userId, String userPw) throws SQLException
     {
         User user = null;
-        String sql = "select * from where userId = ? and userPw = ?";
+        String sql = "select * from user where userId = ? and userPw = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, userId);
@@ -59,7 +59,7 @@ public class UserDAO {
 
         if(rs.next())
         {
-            user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6));
+            user = new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
         }
 
         return user;

@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import todoList.domain.TodoFile;
-import todoList.service.MainService;
-import todoList.service.TodoService;
+import todoList.service.TodoListService;
 
 import java.time.LocalDate;
 
@@ -18,12 +17,12 @@ import java.time.LocalDate;
 public class ModifyController {
 
     @Autowired
-    private TodoService todoService;
+    private TodoListService todoListService;
 
     @GetMapping("todoList/modifypage")
     public void getModify(Model model, @RequestParam("tno") int tno)
     {
-        model.addAttribute("todo", todoService.getTodo(tno));
+        model.addAttribute("todo", todoListService.getTodo(tno));
     }
 
     @PostMapping
@@ -31,7 +30,7 @@ public class ModifyController {
                              @RequestParam("dueDate")String dueDate, @RequestParam("finish") String finish)
     {
         TodoFile todoFile = new TodoFile(index,userId,title,LocalDate.parse(dueDate),finish == null ? true: false);
-        todoService.modifyFile();
+        todoListService.modifyTodo();
 
         return "redirectL/todoList/main";
     }

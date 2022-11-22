@@ -1,14 +1,13 @@
 package todoList.controller;
 
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import todoList.domain.TodoFile;
-import todoList.service.RegistService;
+import todoList.service.TodoListService;
 
 import java.time.LocalDate;
 
@@ -18,10 +17,10 @@ import java.time.LocalDate;
 public class RegistController {
 
     //@Autowired
-    private final RegistService registService;
+    private final TodoListService todoListService;
 
-    public RegistController(RegistService registService) {
-        this.registService = registService;
+    public RegistController(TodoListService todoListService) {
+        this.todoListService = todoListService;
     }
 
     @GetMapping
