@@ -1,5 +1,6 @@
 package todoList.dao;
 
+import org.springframework.stereotype.Repository;
 import todoList.domain.User;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
+    @Repository
     public int insertUser(Connection conn, User user) throws SQLException
     {
 
@@ -15,14 +17,15 @@ public class UserDAO {
         String sql = "insert into  values(?,?,?,?)";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1,user.getIndex());
-        pstmt.setString(2,user.getUserId());
-        pstmt.setString(3,user.getUserPw());
-        pstmt.setString(4,user.getSerialNum());
+        pstmt.setString(1,user.getUserId());
+        pstmt.setString(2,user.getUserPw());
+        pstmt.setString(3,user.getSerialNum());
+        pstmt.setString(4,user.getUserName());
 
         return pstmt.executeUpdate();
     }
 
+    @Repository
     public int deleteUser(Connection conn, User user) throws SQLException
     {
         String sql = "delete from where serialNum = ?";
@@ -33,6 +36,7 @@ public class UserDAO {
         return pstmt.executeUpdate();
     }
 
+    @Repository
     public int updateUser(Connection conn, String serial) throws SQLException
     {
         String sql = "delete from where serialNum = ?";
@@ -44,19 +48,21 @@ public class UserDAO {
 
     }
 
-    public User selectUserByName(Connection conn, String userId) throws SQLException
+    @Repository
+    public User selectUserByNamePassword(Connection conn, String userId, String userPw) throws SQLException
     {
         User user = null;
-        String sql = "select * from where userId = ?";
+        String sql = "select * from where userId = ? and userPw = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, userId);
+        pstmt.setString(2, userPw);
 
         ResultSet rs = pstmt.executeQuery();
 
         if(rs.next())
         {
-            user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4));
+            user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6));
         }
 
         return user;

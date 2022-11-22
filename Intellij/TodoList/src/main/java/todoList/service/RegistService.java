@@ -18,10 +18,12 @@ public class RegistService {
 
     {
         try {
-            conn = ctx.getBean("Conn",ConnectionProvider.class).getConnector();
+            conn = ctx.getBean("Conn",ConnectionProvider.class).getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

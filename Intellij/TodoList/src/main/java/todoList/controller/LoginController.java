@@ -5,10 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import todoList.domain.User;
+import todoList.service.LoginService;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Log4j2
@@ -22,12 +23,16 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(String id, String password)
-    {
-//        if()
-//        return "/main";
-//
-//        else
+    public String login(@RequestParam("userId") String id,@RequestParam("userPw") String password) throws Exception {
+        User user = LoginService.login(id,password);
+
+        if(user != null)
+        {
+            HttpSession session = request.getSession();
+            session.setAttribute("loginInfo", user.toLoginInfo());
+            return "/main";
+        }
+        else
             return "login/login";
     }
 }

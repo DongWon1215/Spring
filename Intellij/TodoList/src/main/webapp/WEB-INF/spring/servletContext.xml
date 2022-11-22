@@ -30,9 +30,11 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/page/**"/>
-            <bean class="todoList.controller."/>
+            <bean class="todoList.controller.LoginCheckController"/>
 
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <mvc:resources mapping="/uploadfile/**" location="/uploadfile/"></mvc:resources>
 
 </beans>
