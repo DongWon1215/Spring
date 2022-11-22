@@ -22,4 +22,17 @@
 
     <bean id="Conn" class="todoList.Util.ConnectionProvider" scope="singleton"></bean>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <!--회원 로그인 여부 체크 interceptor 등록-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/page/**"/>
+            <bean class="todoList.controller."/>
+
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

@@ -32,6 +32,8 @@ public class LoginController {
         String uid2 = request.getParameter("uid");
         String pw2 = request.getParameter("pw");
 
+        log.info(request.getSession().getServletContext().getRealPath("/css"));
+
         log.info("uid =>" + uid);
         log.info("pw =>" + pw);
         log.info("p =>" + page);
@@ -39,7 +41,9 @@ public class LoginController {
         log.info("pw2 =>" + pw2);
         log.info("LoginRequest =>" + loginRequest);
         log.info("paramMap => " + paramMap);
-        return "login/login";
+
+        request.getSession().setAttribute("loginInfo",uid);
+        return  "redirect:/mypage/mypage1";
     }
 
     @GetMapping("/info")                    //http://localhost:8080/login/info
