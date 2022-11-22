@@ -18,4 +18,9 @@ public class User {
     private String serialNum;
     private String userName;
     private String userPhoto;
+
+    public LoginInfo toLoginInfo()
+    {
+        return LoginInfo.builder().userId(this.userId).userName(this.userName).userPhoto(this.userPhoto).build();
+    }
 }

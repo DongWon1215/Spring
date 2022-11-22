@@ -27,10 +27,10 @@ public class ModifyController {
     }
 
     @PostMapping
-    public String modifyTodo(@RequestParam("tno") int tno, @RequestParam("todo") String todo,
-                             @RequestParam("dueDate")String dueDate, @RequestParam("finished") String finished)
+    public String modifyTodo(@RequestParam("index") int index, @RequestParam("userId") String userId, @RequestParam("title") String title,
+                             @RequestParam("dueDate")String dueDate, @RequestParam("finish") String finish)
     {
-        TodoFile todoFile = new TodoFile(tno,todo,LocalDate.parse(dueDate),finished == null ? true: false);
+        TodoFile todoFile = new TodoFile(index,userId,title,LocalDate.parse(dueDate),finish == null ? true: false);
         todoService.modifyFile();
 
         return "redirectL/todoList/main";

@@ -8,24 +8,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Repository
 public class UserDAO {
-    @Repository
     public int insertUser(Connection conn, User user) throws SQLException
     {
 
 
-        String sql = "insert into  values(?,?,?,?)";
+        String sql = "insert into user (userId,userPw,userName,userPhoto) values(?,?,?,?)";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,user.getUserId());
         pstmt.setString(2,user.getUserPw());
-        pstmt.setString(3,user.getSerialNum());
-        pstmt.setString(4,user.getUserName());
+        pstmt.setString(3,user.getUserName());
+        pstmt.setString(4,user.getUserPhoto());
 
         return pstmt.executeUpdate();
     }
 
-    @Repository
     public int deleteUser(Connection conn, User user) throws SQLException
     {
         String sql = "delete from where serialNum = ?";
@@ -36,7 +35,6 @@ public class UserDAO {
         return pstmt.executeUpdate();
     }
 
-    @Repository
     public int updateUser(Connection conn, String serial) throws SQLException
     {
         String sql = "delete from where serialNum = ?";
@@ -48,7 +46,6 @@ public class UserDAO {
 
     }
 
-    @Repository
     public User selectUserByNamePassword(Connection conn, String userId, String userPw) throws SQLException
     {
         User user = null;
