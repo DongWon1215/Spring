@@ -29,7 +29,7 @@ public class ModifyController {
 
     @PostMapping
     public String modifyTodo(
-            @RequestParam("index") int index, @RequestParam("userId") String userId, @RequestParam("title") String title,
+            @RequestParam("userId") String userId, @RequestParam("title") String title,
                              @RequestParam("dueDate")String dueDate, @RequestParam("finish") String finish
             //TodoFile todo
     )

@@ -17,19 +17,19 @@
     <table>
         <tr>
             <td>번호</td>
-            <td><input type="text" name="index" value="${todo.titleNo}" readonly></td>
+            <td><input type="text" name="index" value="${param.index}" readonly></td>
         </tr>
         <tr>
             <td>할일 </td>
-            <td><input type="text" name="title" value="${todo.todoTitle}" > </td>
+            <td><input type="text" name="title" value="${todoList.title}" > </td>
         </tr>
         <tr>
             <td>기한 </td>
-            <td><input type="date" name="dueDate" value="${todo.dueDate}" > </td>
+            <td><input type="date" name="dueDate" value="${todoList.dueDate}" > </td>
         </tr>
         <tr>
             <td>상태 </td>
-            <td><input type="checkbox" name="finish" ${todo.finished ? 'checked' : ''} > </td>
+            <td><input type="checkbox" name="finish" ${todoList.finish ? 'checked' : ''} > </td>
         </tr>
         <tr>
             <td></td>
@@ -41,8 +41,8 @@
     </table>
 </form>
 
-<form action="/page/remove" method="post" >
-    <input type="hidden" name="tno" value="${todo.titleNo}">
+<form action="/page/delete" method="post" >
+    <input type="hidden" name="index" value="${param.index}">
     <input type="submit" value="Remove">
 </form>
 

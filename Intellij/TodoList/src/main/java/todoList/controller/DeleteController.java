@@ -23,10 +23,7 @@ public class DeleteController {
     {
         HttpSession session = request.getSession();
        LoginInfo info = (LoginInfo)session.getAttribute("loginInfo");
-        if(todoListService.deleteTodo(info.getUserId(),index))
-            return "redirect:/page/main";
-
-        else
-            return "redirect:/page/modify";
+        todoListService.deleteTodo(info.getUserId(),index);
+        return "redirect:/page/main";
     }
 }

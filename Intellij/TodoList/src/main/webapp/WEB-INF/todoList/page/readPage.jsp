@@ -19,18 +19,20 @@
     </tr>
     <tr>
         <td>할일 </td>
-        <td><input type="text" name="title" value="${todo.title}" readonly> </td>
+        <td><input type="text" name="title" value="${todoList.title}" readonly> </td>
     </tr>
     <tr>
         <td>기한 </td>
-        <td><input type="date" name="dueDate" value="${todo.dueDate}" readonly> </td>
+        <td><input type="date" name="dueDate" value="${todoList.dueDate}" readonly> </td>
     </tr>
     <tr>
         <td>상태 </td>
-        <td><input type="checkbox" name="finish" ${todo.finished ? 'checked' : ''} > </td>
+        <td><input type="checkbox" name="finish" ${todoList.finish ? 'checked' : '' } > </td>
     </tr>
 </table>
 
-<a href="/page/modify?tno=${param.index}">Modify/Remove</a> <a href="/page/main">Todo List</a>
+<form action="" method="post">
+<a href="/page/modify?index=${param.index}">Modify/Remove</a> <a href="/page/main">Todo List</a>
+</form>
 </body>
 </html>

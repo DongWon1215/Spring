@@ -106,11 +106,11 @@ public class TodoDAO {
     }
 
     public int deleteTodo(Connection conn,String userid , int index) throws SQLException {
-        String sql = "delete from todotable where index = ? and userid = ?";
+        String sql = "delete from todotable where todoindex = ? and userid = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,userid);
-        pstmt.setInt(2,index);
+        pstmt.setInt(1,index);
+        pstmt.setString(2,userid);
 
         return pstmt.executeUpdate();
     }
