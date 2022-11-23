@@ -9,13 +9,12 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @Log4j2
-@RequestMapping("/logout")
 public class LogOutController {
-    @GetMapping
+    @GetMapping("/logout")
     public String logout(HttpSession httpSession)
     {
         httpSession.invalidate();
 
-        return "redirect:/main";
+        return "redirect:/page/main";
     }
 }

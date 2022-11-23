@@ -15,11 +15,11 @@
 <table>
     <tr>
         <td>번호</td>
-        <td><input type="text" name="index" value="${param.titleNo}" readonly></td>
+        <td><input type="text" name="index" value="${param.index}" readonly></td>
     </tr>
     <tr>
         <td>할일 </td>
-        <td><input type="text" name="title" value="${todo.todoTitle}" readonly> </td>
+        <td><input type="text" name="title" value="${todo.title}" readonly> </td>
     </tr>
     <tr>
         <td>기한 </td>
@@ -31,6 +31,6 @@
     </tr>
 </table>
 
-<a href="/todolist/modify?tno=${param.titleNo}">Modify/Remove</a> <a href="/todolist/todolist">Todo List</a>
+<a href="/page/modify?tno=${param.index}">Modify/Remove</a> <a href="/page/main">Todo List</a>
 </body>
 </html>

@@ -7,14 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import todoList.domain.LoginInfo;
 import todoList.domain.TodoFile;
 import todoList.service.TodoListService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 @Controller
 @Log4j2
-@RequestMapping("/todoList/regist")
+@RequestMapping("/page/regist")
 public class RegistController {
 
     //@Autowired
@@ -29,11 +32,14 @@ public class RegistController {
     }
 
     @PostMapping
-    public String addFile(@RequestParam("title")String title,@RequestParam("dueDate") String dueDate)
+    public String addFile(HttpServletRequest request, @RequestParam("title")String title, @RequestParam("dueDate") String dueDate)
     {
-        TodoFile todoFile = TodoFile.builder().title(title).dueDate(LocalDate.parse(dueDate)).build();
+        HttpSession session = request.getSession();
+        LoginInfo userInfo = (LoginInfo)session.getAttribute("loginInfo");
+        String userid = userInfo.getUserId();
+        todoListService.insertTodo(TodoFile.builder().userId(userid).title(title).dueDate(LocalDate.parse(dueDate)).build());
 
         //사용자가 입력한 데이터를 받아와야함
-        return "redirect:/page/mainpage";
+        return "redirect:/page/main";
     }
 }

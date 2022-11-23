@@ -41,12 +41,12 @@
     </table>
 </form>
 
-<form action="/todolist/remove" method="post" >
+<form action="/page/remove" method="post" >
     <input type="hidden" name="tno" value="${todo.titleNo}">
     <input type="submit" value="Remove">
 </form>
 
-<a href="/todolist/todolist">Todo List</a>
+<a href="/page/main">Todo List</a>
 
 </body>
 </html>

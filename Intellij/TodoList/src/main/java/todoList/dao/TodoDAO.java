@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Repository(value = "todoDAO")
 @Log4j2
 public class TodoDAO {
     public List<TodoFile> selectAll(Connection conn) throws SQLException {
@@ -29,7 +29,6 @@ public class TodoDAO {
         {
             list.add(new TodoFile(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getBoolean(5)));
         }
-
         return list;
     }
     public List<TodoFile> selectAllById(Connection conn, String userId) throws SQLException {
@@ -69,9 +68,10 @@ public class TodoDAO {
     public TodoFile selectByIndex(Connection conn, int index) throws SQLException {
         TodoFile todo = null;
 
-        String sql = " select * from todotable where index = ?";
+        String sql = " select * from todotable where todoindex = ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1,index);
         ResultSet rs = pstmt.executeQuery();
 
         if(rs.next())
@@ -83,13 +83,12 @@ public class TodoDAO {
     }
 
     public int insertTodo(Connection conn, TodoFile todoFile) throws SQLException {
-        String sql = "insert into todotable(userid,title,duedate,finish) values(?,?,?,?)";
+        String sql = "insert into todotable(userid,title,duedate) values(?,?,?)";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1,todoFile.getUserId());
         pstmt.setString(2,todoFile.getTitle());
         pstmt.setDate(3,java.sql.Date.valueOf(todoFile.getDueDate()));
-        pstmt.setBoolean(4,todoFile.isFinish());
 
         return pstmt.executeUpdate();
     }
@@ -115,6 +114,5 @@ public class TodoDAO {
 
         return pstmt.executeUpdate();
     }
-
 
 }

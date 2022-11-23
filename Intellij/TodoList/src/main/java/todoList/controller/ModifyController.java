@@ -19,7 +19,7 @@ public class ModifyController {
     @Autowired
     private TodoListService todoListService;
 
-    @GetMapping("todoList/modify")
+    @GetMapping("page/modify")
     public String getModify(Model model, @RequestParam("index") int index)
     {
         model.addAttribute("title", todoListService.getTodobyIdx(index));
@@ -37,6 +37,6 @@ public class ModifyController {
         todoListService.modifyTodo(userId,title,LocalDate.parse(dueDate),finish == null ? false: true);
         //todoListService.modifyTodo(todo);
 
-        return "redirect:/main";
+        return "redirect:/page/main";
     }
 }

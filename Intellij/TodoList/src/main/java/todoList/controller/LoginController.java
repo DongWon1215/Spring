@@ -35,7 +35,7 @@ public class LoginController {
         {
             HttpSession session = request.getSession();
             session.setAttribute("loginInfo", user.toLoginInfo());
-            return "redirect:/main";
+            return "redirect:/page/main";
         }
         else
         {

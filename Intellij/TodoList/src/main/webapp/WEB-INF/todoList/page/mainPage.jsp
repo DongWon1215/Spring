@@ -20,7 +20,7 @@
     ${loginInfo.userName}
     <img src="uploadfile/user/${loginInfo.userPhoto}">
     <form action="/logout" method="post">
-    <input type="submit" value="로그아웃">
+    <a href="/logout">로그아웃</a>
     </form>
 </c:if>
 
@@ -32,10 +32,10 @@
         <td>완료여부</td>
     </tr>
 
-    <c:forEach var="todo" items="${todoList}" varStatus="stat">
+    <c:forEach var="todo" items="${todoList}" varStatus="status">
         <tr>
-            <td>${todo.tno} / ${stat.count}</td>
-            <td><a href="/todo/read?index=${todo.index}">${todo.title}</a></td>
+            <td>${todo.index}</td>
+            <td><a href="/page/read?index=${todo.index}">${todo.title}</a></td>
             <td>${todo.dueDate}</td>
             <td>${todo.finish ? '완료' : '진행중'}</td>
         </tr>
@@ -46,6 +46,6 @@
 </table>
 
 
-<a href="/todo/regist">Todo 등록하기</a>
+<a href="/page/regist">Todo 등록하기</a>
 </body>
 </html>
