@@ -14,10 +14,10 @@ public class ReadController {
     private TodoListService todoListService;
 
     @GetMapping("/todoList/read")
-    public void readTodo(Model model, @RequestParam("index") int index)
+    public String readTodo(Model model, @RequestParam("index") int index)
     {
         model.addAttribute("todoList", todoListService.getTodobyIdx(index));
 
-        //return "/todoList/read";
+        return "/page/readPage";
     }
 }

@@ -19,18 +19,24 @@ public class ModifyController {
     @Autowired
     private TodoListService todoListService;
 
-    @GetMapping("todoList/modifypage")
-    public void getModify(Model model, @RequestParam("index") int index)
+    @GetMapping("todoList/modify")
+    public String getModify(Model model, @RequestParam("index") int index)
     {
         model.addAttribute("title", todoListService.getTodobyIdx(index));
+
+        return "/page/modifyPage";
     }
 
     @PostMapping
-    public String modifyTodo(@RequestParam("index") int index, @RequestParam("userId") String userId, @RequestParam("title") String title,
-                             @RequestParam("dueDate")String dueDate, @RequestParam("finish") String finish)
+    public String modifyTodo(
+            @RequestParam("index") int index, @RequestParam("userId") String userId, @RequestParam("title") String title,
+                             @RequestParam("dueDate")String dueDate, @RequestParam("finish") String finish
+            //TodoFile todo
+    )
     {
-        todoListService.modifyTodo(userId,title,LocalDate.parse(dueDate),finish == null ? true: false);
+        todoListService.modifyTodo(userId,title,LocalDate.parse(dueDate),finish == null ? false: true);
+        //todoListService.modifyTodo(todo);
 
-        return "redirectL/todoList/main";
+        return "redirect:/main";
     }
 }

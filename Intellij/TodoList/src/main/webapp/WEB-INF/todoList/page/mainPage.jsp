@@ -19,7 +19,7 @@
     ${loginInfo.userId}
     ${loginInfo.userName}
     <img src="uploadfile/user/${loginInfo.userPhoto}">
-    <form>
+    <form action="/logout" method="post">
     <input type="submit" value="로그아웃">
     </form>
 </c:if>
@@ -46,6 +46,6 @@
 </table>
 
 
-<a href="/todo/register">Todo 등록하기</a>
+<a href="/todo/regist">Todo 등록하기</a>
 </body>
 </html>

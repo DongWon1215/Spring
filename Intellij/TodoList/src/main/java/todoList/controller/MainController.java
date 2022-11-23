@@ -7,19 +7,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import todoList.service.TodoListService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Log4j2
 public class MainController {
     @Autowired
     private TodoListService todoListService;
     @RequestMapping("/main")
-    public String getmainPage(Model model)
+    public String getmainPage(HttpServletRequest request, Model model)
     {
-        model.addAttribute("todoList", todoListService.getTodoList());
+        HttpSession session = request.getSession();
+        String userId = session.getAttribute("loginInfo").toString();
+        log.info(userId);
+        //model.addAttribute("todoList", );
 
         return "/page/mainPage";
     }
-
-//    @RequestMapping("/main")
-//    public
 }

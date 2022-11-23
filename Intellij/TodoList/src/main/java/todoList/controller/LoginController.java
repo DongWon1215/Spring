@@ -31,14 +31,11 @@ public class LoginController {
     public String login(@RequestParam("userId") String id, @RequestParam("userPw") String password, HttpServletRequest request) throws Exception {
         User user = loginservice.login(id,password);
 
-        log.info("여긴 되겠지");
         if(user != null)
         {
-            log.info("여기까진 됨");
             HttpSession session = request.getSession();
-            log.info("여기까진 되냐?");
             session.setAttribute("loginInfo", user.toLoginInfo());
-            return "redirect:/page/main";
+            return "redirect:/main";
         }
         else
         {

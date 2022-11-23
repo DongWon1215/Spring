@@ -15,8 +15,6 @@ public class LoginService {
     public static User login(String userId, String userPw) throws Exception {
         UserDAO userdao = new UserDAO();
         Connection conn = ConnectionProvider.getInstance().getConnection();
-
-        log.info("conn 얻어오는거까진 성공함");
         return userdao.selectUserByNamePassword(conn, userId, userPw);
     }
 }

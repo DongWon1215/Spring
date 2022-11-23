@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>로그인 페이지</h1>
-<form method="post">
+<form action="/login/login" method="post">
 <table>
     <tr>
         <td>아이디</td>

@@ -38,4 +38,17 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <bean id = "conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.example.springmvc.formatter.LocalDateFormatter"/>
+                <bean class="com.example.springmvc.formatter.CheckboxFormatter"/>
+            </set>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven>
+
+    </mvc:annotation-driven>
+
 </beans>

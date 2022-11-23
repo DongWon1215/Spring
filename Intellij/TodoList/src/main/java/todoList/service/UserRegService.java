@@ -27,9 +27,9 @@ public class UserRegService {
 
             String dirRealPath = request.getSession().getServletContext().getRealPath(driURI);
             try {
-                regRequest.getUserPhoto().transferTo(new File(dirRealPath, regRequest.getUserPhoto().getOriginalFilename()));
+                regRequest.getUserPhoto().transferTo(new File(dirRealPath, newFileName));
             } catch (IOException e) {
-                throw new RuntimeException();
+                e.printStackTrace();
             }
         }
 

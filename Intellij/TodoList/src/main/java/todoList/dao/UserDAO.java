@@ -47,7 +47,6 @@ public class UserDAO {
         pstmt.setString(1,serial);
 
         return pstmt.executeUpdate();
-
     }
 
     public User selectUserByNamePassword(Connection conn, String userId, String userPw) throws SQLException

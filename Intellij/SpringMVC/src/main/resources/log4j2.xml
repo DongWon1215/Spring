@@ -6,7 +6,15 @@
         </Console>
     </Appenders>
     <Loggers>
+
         <!--루트 레벨의 경고 수준부터 그 다음 단계들만 표시함-->
+        <Logger name = "org.springframework" level="debug" addiitivity="false">
+            <AppenderRef ref = "console"/>
+        </Logger>
+
+        <Logger name = "com.example.springmvc" level="info" addiitivity="false">
+            <AppenderRef ref = "console"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>

@@ -25,7 +25,7 @@ public class RegistController {
     @GetMapping
     public String getRegist()
     {
-        return "registPage";
+        return "/page/registPage";
     }
 
     @PostMapping

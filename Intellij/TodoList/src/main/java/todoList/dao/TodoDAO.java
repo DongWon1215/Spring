@@ -32,6 +32,24 @@ public class TodoDAO {
 
         return list;
     }
+    public List<TodoFile> selectAllById(Connection conn, String userId) throws SQLException {
+
+        List<TodoFile> list = new ArrayList<>();
+
+        String sql = " select * from todotable where userId = ?";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,userId);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        while(rs.next())
+        {
+            list.add(new TodoFile(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getBoolean(5)));
+        }
+
+        return list;
+    }
 
     public TodoFile selectById(Connection conn, String userId) throws SQLException {
         TodoFile todo = null;
