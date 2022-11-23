@@ -13,6 +13,7 @@
 
     <mvc:resources mapping="/todoList/**" location="/WEB-INF/todoList/"></mvc:resources>
     <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:resources mapping="/uploadfile/**" location="/uploadfile/"/>
     <context:component-scan base-package="todoList"></context:component-scan>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -35,6 +36,12 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <mvc:resources mapping="/uploadfile/**" location="../uploadfile/"/>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="todoList.formatter.LocalDateFormatter"/>
+            </set>
+        </property>
+    </bean>
 
 </beans>
