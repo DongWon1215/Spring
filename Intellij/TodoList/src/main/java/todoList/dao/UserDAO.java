@@ -25,16 +25,16 @@ public class UserDAO {
         return pstmt.executeUpdate();
     }
 
-    public int deleteUser(Connection conn, User user) throws SQLException
+    public int deleteUser(Connection conn, String userId) throws SQLException
     {
         String sql = "delete from todotable where userId = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,user.getUserId());
+        pstmt.setString(1,userId);
         pstmt.executeUpdate();
 
         sql = "delete from user where userId = ?";
         pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,user.getUserId());
+        pstmt.setString(1,userId);
 
         return pstmt.executeUpdate();
     }

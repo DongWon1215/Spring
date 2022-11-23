@@ -22,6 +22,9 @@
     <form action="/logout" method="post">
     <a href="/logout">로그아웃</a>
     </form>
+    <form action="/withdrawal" method="post">
+        <input type="submit" value="회원탈퇴">
+    </form>
 </c:if>
 
 <table>

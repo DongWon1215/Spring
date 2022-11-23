@@ -17,4 +17,11 @@ public class LoginService {
         Connection conn = ConnectionProvider.getInstance().getConnection();
         return userdao.selectUserByNamePassword(conn, userId, userPw);
     }
+
+    public static int withdrawal(String userId) throws Exception {
+        UserDAO userdao = new UserDAO();
+        Connection conn = ConnectionProvider.getInstance().getConnection();
+        return userdao.deleteUser(conn,userId);
+    }
+
 }
