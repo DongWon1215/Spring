@@ -1,21 +1,22 @@
 package todoList.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import todoList.Util.ConnectionProvider;
-import todoList.dao.UserDAO;
 import todoList.domain.User;
 import todoList.domain.UserRegRequest;
+import todoList.mapper.UserMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 
 @Service
 public class UserRegService {
     //사용자 요청 데이터를 받고 파일 업로드 처리. DAO INTERT 요청
 
-    UserDAO userdao = new UserDAO();
+    @Autowired
+    private UserMapper userMapper;
+
     public int UserReg(UserRegRequest regRequest, HttpServletRequest request) throws Exception {
         String newFileName = null;
 
@@ -37,8 +38,6 @@ public class UserRegService {
         if(newFileName != null)
             user.setUserPhoto(newFileName);
 
-        Connection conn = ConnectionProvider.getInstance().getConnection();
-
-        return userdao.insertUser(conn,user);
+        return userMapper.insertUser(user);
     }
 }

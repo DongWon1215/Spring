@@ -1,14 +1,10 @@
 package todoList.service;
 
-import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import todoList.Util.ConnectionProvider;
-import todoList.dao.TodoDAO;
 import todoList.domain.TodoFile;
-
-import java.sql.Connection;
+import todoList.mapper.TodoMapper;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +14,14 @@ import java.util.List;
 public class TodoListService {
 
     @Autowired
-    private TodoDAO dao;
+    private TodoMapper todoMapper;
 
     public TodoFile getTodobyIdx(int index)
     {
         TodoFile todo = null;
 
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            todo = dao.selectByIndex(conn,index);
+            todo = todoMapper.selectByIndex(index);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,8 +33,7 @@ public class TodoListService {
         TodoFile todo = null;
 
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            todo = dao.selectById(conn,userId);
+            todo = todoMapper.selectById(userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,8 +46,7 @@ public class TodoListService {
         List<TodoFile> list = new ArrayList<>();
 
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            list = dao.selectAll(conn);
+            list = todoMapper.selectAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,8 +58,7 @@ public class TodoListService {
         List<TodoFile> list = new ArrayList<>();
 
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            list = dao.selectAllById(conn,userId);
+            list = todoMapper.selectAllById(userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,8 +68,7 @@ public class TodoListService {
     public boolean insertTodo(TodoFile todo)
     {
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            dao.insertTodo(conn,todo);
+            todoMapper.insertTodo(todo);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,8 +78,7 @@ public class TodoListService {
     public boolean modifyTodo(String userId, String title, LocalDate duedate, Boolean finish)
     {
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            dao.updateTodo(conn,userId,title,duedate,finish);
+            todoMapper.updateTodo(userId,title,duedate,finish);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,8 +89,7 @@ public class TodoListService {
     public boolean deleteTodo(String userId, int index)
     {
         try {
-            @Cleanup Connection conn = ConnectionProvider.getInstance().getConnection();
-            dao.deleteTodo(conn,userId,index);
+            todoMapper.deleteTodo(userId,index);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
