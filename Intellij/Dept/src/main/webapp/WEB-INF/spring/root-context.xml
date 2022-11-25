@@ -38,4 +38,12 @@
         <property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
     </bean>
     <mybatis:scan base-package="dept.manager.mapper"/>
+
+    <!--트랜젝션 설정-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 </beans>

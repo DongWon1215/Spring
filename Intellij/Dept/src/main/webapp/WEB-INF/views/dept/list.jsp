@@ -16,6 +16,19 @@
 <hr>
 
     <a href="/dept/register">부서 등록</a>
+
+    <div>
+        <form>
+            검색
+            <select name="searchType">
+                <option value="dname">부서이름</option>
+                <option value="loc">부서위치</option>
+            </select>
+            <input type="text" name="keyword">
+            <input type="submit" value="검색">
+        </form>
+    </div>
+
 <table border="1">
     <tr>
         <th>부서 번호</th>
@@ -28,7 +41,7 @@
             <td>${dept.deptno}</td>
             <td>${dept.dname}</td>
             <td>${dept.loc}</td>
-            <td><a href="/dept/edit?no=${dept.deptno}">modify</a>/<a href="/dept/remove?no=${dept.deptno}">remove</a></td>
+            <td><a href="/dept/edit?no=${dept.deptno}">modify</a>/<a href="/dept/delete?no=${dept.deptno}">remove</a></td>
         </tr>
     </c:forEach>
 

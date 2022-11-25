@@ -1,5 +1,6 @@
 package todoList.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import todoList.service.TodoListService;
 
 @Controller
+@Log4j2
 public class ReadController {
 
     @Autowired

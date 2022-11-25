@@ -1,3 +1,4 @@
+import dept.manager.domain.DeptSearchOption;
 import dept.manager.mapper.DeptMapper;
 import dept.manager.mapper.TimeMapper;
 import lombok.Cleanup;
@@ -12,6 +13,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -48,5 +51,21 @@ public class ConnectionTest {
     void getDeptList() throws SQLException {
         //log.info("dept : "+deptMapper.selectByDeptno(10));
         //log.info("dept : "+deptMapper.insertDept(new DeptDTO(50,"",""));
+    }
+
+//    @Test
+//    public void deptSelectByOptionTest()
+//    {
+//        log.info(deptMapper.selectByOption(DeptSearchOption.builder().searchType("dname").keyWord("ac").build()));
+//    }
+
+    @Test
+    public void deptSelectByDeptnosTest()
+    {
+        List<Integer> list = new ArrayList<>();
+//        list.add(10);
+//        list.add(30);
+
+        log.info(("In 연산 테스트 =>" + deptMapper.selectByDeptnos(list)));
     }
 }

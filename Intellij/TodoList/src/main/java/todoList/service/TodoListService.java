@@ -13,7 +13,7 @@ import java.util.List;
 @Log4j2
 public class TodoListService {
 
-    @Autowired
+    @Autowired(required = false)
     private TodoMapper todoMapper;
 
     public TodoFile getTodobyIdx(int index)

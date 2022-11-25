@@ -3,7 +3,7 @@
 <mapper namespace="todoList.mapper.UserMapper">
     <select id = "selectAll" resultType="todoList.domain.User">select * from user</select>
 
-    <select id = "selectUserByNamePassword" resultType="todoList.domain.LoginInfo">select * from user where userId = #{userId} and userPw = #{userPw}</select> <!--#{}안에 들어가는 변수의 이름은 변수가 1개일땐 아무 이름이나 들어가도 상관 없지만 2개 이상일 경우 구분을 해줘야 한다-->
+    <select id = "selectUserByNamePassword" resultType="todoList.domain.User">select * from user where userId = #{param1} and userPw = #{param2}</select> <!--#{}안에 들어가는 변수의 이름은 변수가 1개일땐 아무 이름이나 들어가도 상관 없지만 2개 이상일 경우 구분을 해줘야 한다-->
 
     <update id="updateUser" parameterType="todoList.domain.User">update user set  where serialNum = #{serial}</update><!--객체 형식으로 들어왔기 때문에 객체의 변수 명으로 작성해도 알아서 매핑해준다-->
 

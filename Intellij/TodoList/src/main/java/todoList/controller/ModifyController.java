@@ -25,7 +25,7 @@ public class ModifyController {
     @GetMapping("page/modify")
     public String getModify(Model model, @RequestParam("index") int index)
     {
-        model.addAttribute("title", todoListService.getTodobyIdx(index));
+        model.addAttribute("todoList", todoListService.getTodobyIdx(index));
 
         return "/page/modifyPage";
     }

@@ -6,6 +6,11 @@
         </Console>
     </Appenders>
     <Loggers>
+
+        <Logger name = "todoList.mapper" level="trace" addiitivity="false">
+            <AppenderRef ref = "console"/>
+        </Logger>
+
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>
