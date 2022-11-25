@@ -12,6 +12,7 @@
        https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
 
+
 <mvc:resources mapping="/todoList/**" location="/WEB-INF/todoList/"/>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/uploadfile/**" location="/uploadfile/"/>
@@ -42,5 +43,8 @@
             </set>
         </property>
     </bean>
+
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
 
 </beans>

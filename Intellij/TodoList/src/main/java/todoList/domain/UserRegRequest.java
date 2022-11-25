@@ -14,9 +14,13 @@ import java.lang.reflect.Member;
 @NoArgsConstructor
 @Builder
 public class UserRegRequest {
+    @NonNull
     private String userId;
+    @NonNull
     private String userPw;
+    @NonNull
     private String userName;
+
     private MultipartFile userPhoto;
 
     public User toUser() {
