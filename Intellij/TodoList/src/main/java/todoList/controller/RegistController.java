@@ -37,7 +37,7 @@ public class RegistController {
         HttpSession session = request.getSession();
         LoginInfo userInfo = (LoginInfo)session.getAttribute("loginInfo");
         String userid = userInfo.getUserId();
-        todoListService.insertTodo(TodoFile.builder().userId(userid).title(title).dueDate(LocalDate.parse(dueDate)).build());
+        todoListService.insertTodo(new TodoFile(0,userid,title,LocalDate.parse(dueDate),false));
 
         //사용자가 입력한 데이터를 받아와야함
         return "redirect:/page/main";

@@ -22,4 +22,8 @@ public class LoginService {
         return userMapper.deleteUser(userId);
     }
 
+    public int modify(String password, String name, String photo, String id){
+        return userMapper.updateUser(password, name, photo, id);
+    }
+
 }

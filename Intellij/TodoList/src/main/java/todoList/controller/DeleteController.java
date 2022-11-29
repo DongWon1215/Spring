@@ -19,11 +19,9 @@ public class DeleteController {
     private TodoListService todoListService;
 
     @PostMapping("page/delete")
-    public String removeTodo(HttpServletRequest request, @RequestParam("index") int index)
+    public String removeTodo(@RequestParam("index") int index)
     {
-        HttpSession session = request.getSession();
-       LoginInfo info = (LoginInfo)session.getAttribute("loginInfo");
-        todoListService.deleteTodo(info.getUserId(),index);
+        todoListService.deleteTodo(index);
         return "redirect:/page/main";
     }
 }

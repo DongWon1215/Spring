@@ -4,6 +4,9 @@ import lombok.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Member;
 
 @Log4j2
@@ -13,12 +16,13 @@ import java.lang.reflect.Member;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Valid
 public class UserRegRequest {
-    @NonNull
+    @NotEmpty
     private String userId;
-    @NonNull
+    @NotEmpty
     private String userPw;
-    @NonNull
+    @NotNull
     private String userName;
 
     private MultipartFile userPhoto;

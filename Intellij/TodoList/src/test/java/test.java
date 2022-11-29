@@ -1,5 +1,6 @@
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,13 +18,13 @@ public class test {
     @Autowired
     private DataSource dataSource;
 
+    @Test
     public void connectionTest() throws SQLException {
         Connection connection = dataSource.getConnection();
 
         log.info(connection);
 
         Assertions.assertNotNull(connection);
-
 
         connection.close();
     }

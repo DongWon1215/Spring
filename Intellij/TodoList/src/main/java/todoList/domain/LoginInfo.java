@@ -3,22 +3,26 @@ package todoList.domain;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-@Validated
+@Valid
 public class LoginInfo {
 
-    @NonNull
+    @NotEmpty
     private String userId;
 
-    @NonNull
+    @NotNull
     private String userName;
 
-    
+    @NotNull
     private String userPhoto;
 
 }

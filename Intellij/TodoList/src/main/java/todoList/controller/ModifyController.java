@@ -31,15 +31,15 @@ public class ModifyController {
     }
 
     @PostMapping("page/modify")
-    public String modify(HttpServletRequest request,
-                         @RequestParam("title") String title,
+    public String modify(@RequestParam("index") int index ,@RequestParam("title") String title,
                          @RequestParam("dueDate")String dueDate, @RequestParam("finish") String finish
                          //TodoFile todo
     )
     {
-        HttpSession session = request.getSession();
-        LoginInfo userInfo = (LoginInfo)session.getAttribute("loginInfo");
-        todoListService.modifyTodo(userInfo.getUserId(),title,LocalDate.parse(dueDate),finish == null ? false: true);
+        if(finish == null)
+            finish = "null";
+
+        todoListService.modifyTodo(index,title,LocalDate.parse(dueDate),finish.equals("on") ? true: false);
         //todoListService.modifyTodo(todo);
 
         return "redirect:/page/main";

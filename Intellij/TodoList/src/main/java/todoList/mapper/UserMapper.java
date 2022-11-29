@@ -10,7 +10,7 @@ public interface UserMapper {
 
     int insertUser(User user);
     int deleteUser(String userId);
-    int updateUser(String serial);
+    int updateUser(String userPw, String userName, String userPhoto, String userId);
     User selectUserByNamePassword(
             @Param("id") String userId, // param1
             @Param("pw") String userPw   // param2

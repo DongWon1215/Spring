@@ -2,8 +2,10 @@ package todoList.domain;
 
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Log4j2
@@ -13,17 +15,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Validated
+@Valid
 public class TodoFile {
     private int index;
 
-    @NonNull
+    @NotEmpty
     private String userId;
 
-    @NonNull
+    @NotNull
     private String title;
 
-    @NonNull
     private LocalDate dueDate;
 
     private boolean finish;

@@ -5,10 +5,10 @@
 
     <select id = "selectUserByNamePassword" resultType="todoList.domain.User">select * from user where userId = #{param1} and userPw = #{param2}</select> <!--#{}안에 들어가는 변수의 이름은 변수가 1개일땐 아무 이름이나 들어가도 상관 없지만 2개 이상일 경우 구분을 해줘야 한다-->
 
-    <update id="updateUser" parameterType="todoList.domain.User">update user set  where serialNum = #{serial}</update><!--객체 형식으로 들어왔기 때문에 객체의 변수 명으로 작성해도 알아서 매핑해준다-->
+    <update id="updateUser" parameterType="todoList.domain.User">update user set userPw =
+        #{param1}, userName = #{param2}, userPhoto = #{param3} where userId = #{param4}</update><!--객체 형식으로 들어왔기 때문에 객체의 변수 명으로 작성해도 알아서 매핑해준다-->
 
     <insert id="insertUser" parameterType="todoList.domain.User">insert into user (userId,userPw,userName,userPhoto) values(#{userId},#{userPw},#{userName},#{userPhoto})</insert>
 
     <delete id="deleteUser" parameterType="todoList.domain.User">delete * from user where userId = #{userId}</delete>
-
 </mapper>

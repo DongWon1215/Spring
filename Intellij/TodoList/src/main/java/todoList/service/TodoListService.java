@@ -25,7 +25,6 @@ public class TodoListService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return todo;
     }
     public TodoFile getTodobyId(String userId)
@@ -37,10 +36,8 @@ public class TodoListService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return todo;
     }
-
     public List<TodoFile> getTodoList()
     {
         List<TodoFile> list = new ArrayList<>();
@@ -50,7 +47,6 @@ public class TodoListService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return list;
     }
     public List<TodoFile> getTodoList(String userId)
@@ -62,39 +58,38 @@ public class TodoListService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return list;
     }
     public boolean insertTodo(TodoFile todo)
     {
         try {
+            log.info("todo 객체 : " + todo);
             todoMapper.insertTodo(todo);
+            log.info("일단 성공적으로 집어넣음");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-    public boolean modifyTodo(String userId, String title, LocalDate duedate, Boolean finish)
+    public boolean modifyTodo(int index, String title, LocalDate dueDate, Boolean finish)
     {
         try {
-            todoMapper.updateTodo(userId,title,duedate,finish);
+            todoMapper.updateTodo(index,title,dueDate,finish);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return false;
     }
-    public boolean deleteTodo(String userId, int index)
+    public boolean deleteTodo(int index)
     {
         try {
-            todoMapper.deleteTodo(userId,index);
+            todoMapper.deleteTodo(index);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return false;
     }
 }

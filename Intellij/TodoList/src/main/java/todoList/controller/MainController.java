@@ -24,11 +24,9 @@ public class MainController {
     {
         HttpSession session = request.getSession();
         LoginInfo userInfo = (LoginInfo)session.getAttribute("loginInfo");
-        log.info(userInfo.getUserId());
         List<TodoFile> list = new ArrayList<>();
         list = todoListService.getTodoList(userInfo.getUserId());
         model.addAttribute("todoList", list);
-        log.info(list);
 
         return "/page/mainPage";
     }

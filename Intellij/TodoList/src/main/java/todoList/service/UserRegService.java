@@ -2,6 +2,7 @@ package todoList.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import todoList.domain.User;
 import todoList.domain.UserRegRequest;
 import todoList.mapper.UserMapper;
@@ -17,6 +18,7 @@ public class UserRegService {
     @Autowired(required = false)
     private UserMapper userMapper;
 
+    @Transactional
     public int UserReg(UserRegRequest regRequest, HttpServletRequest request) throws Exception {
         String newFileName = null;
 

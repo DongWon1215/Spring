@@ -15,8 +15,8 @@ public interface TodoMapper {
     List<TodoFile> selectAllById(String userId);
     TodoFile selectById(String userId);
     TodoFile selectByIndex(int index);
-    @Transactional
+
     int insertTodo(TodoFile todoFile);
-    int updateTodo(String userId, String title, LocalDate dueDate, boolean isFinish);
-    int deleteTodo(String userid , int index);
+    int updateTodo(int index, String title, LocalDate dueDate, boolean Finish);
+    int deleteTodo(int index);
 }
