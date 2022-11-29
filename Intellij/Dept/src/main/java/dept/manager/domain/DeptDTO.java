@@ -12,6 +12,7 @@ import javax.validation.constraints.Positive;
 @Getter
 @Setter
 @ToString
+@Builder
 public class DeptDTO {
     @Min(value = 1)
     @Max(value = 99)
