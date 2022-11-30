@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="todoList.mapper.TodoMapper">
+    <select id="selectAll" resultType="todoList.domain.TodoFile">select * from todotable</select>
+    <select id="selectAllById" resultType="todoList.domain.TodoFile">select * from todotable where userId = #{userId}
+    </select>
+
+    <select id="selectById" resultType="todoList.domain.TodoFile">select * from todotable where userId = #{userId}
+    </select> <!--#{}안에 들어가는 변수의 이름은 변수가 1개일땐 아무 이름이나 들어가도 상관 없지만 2개 이상일 경우 구분을 해줘야 한다-->
+    <select id="selectByIndex" resultType="todoList.domain.TodoFile">select * from todotable where `index` = #{index}
+    </select>
+
+    <insert id="insertTodo" parameterType="todoList.domain.TodoFile">insert into todotable(userid,title,dueDate)
+        values(#{userId},#{title},#{dueDate})
+    </insert>
+
+    <update id="updateTodo" parameterType="todoList.domain.TodoFile">update todotable set title = #{param2} , dueDate =
+        #{param3}, finish = #{param4} where `index` =  #{param1}
+    </update><!--객체 형식으로 들어왔기 때문에 객체의 변수 명으로 작성해도 알아서 매핑해준다-->
+
+    <delete id="deleteTodo" parameterType="todoList.domain.TodoFile">delete from todotable where `index` = #{index}</delete>
+</mapper>
