@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="inside.mapper.CommentMapper">
+    <select id="selectPostAllComment" resultType="inside.domain.CommentDTO">select * from Comment where postIndex = #{param1}</select>
+    <select id="selectCommentByIndex" resultType="inside.domain.CommentDTO">select * from Comment where `index` = #{param1}</select>
+
+    <insert id="insertComment" parameterType="inside.domain.CommentDTO">insert into Comment(Writer,Password,Content,postIndex)
+        values(#{commentWriter}, #{commentPassword}, #{commentContent}, #{postIndex})</insert>
+    
+    <update id="updateComment" parameterType="inside.domain.CommentDTO">update Comment set Content = #{param3} where Password = #{param2} and `index` = #{param1}</update>
+
+    <delete id="deleteComment" parameterType="inside.domain.CommentDTO">delete from Comment where `index` = #{param1}</delete>
+</mapper>

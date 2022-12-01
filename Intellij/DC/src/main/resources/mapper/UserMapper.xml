@@ -1,0 +1,12 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="inside.mapper.UserMapper">
+    <select id="selectByIdPw" resultType="inside.domain.UserDTO">select * from Member where userId = #{param1} and password = #{param2}</select>
+
+    <insert id="insertUser" parameterType="inside.domain.UserDTO">insert into Member(userId,password,nickname,Photo)
+        values(#{userId}, #{userPassword}, #{userNickName}, #{userPhoto})</insert>
+
+    <update id="updateUser" parameterType="inside.domain.UserDTO">update Member set password = #{param2}, nickname = #{param3}, Photo = #{param4} where userId = #{param1}</update>
+
+    <delete id="deleteUser" parameterType="inside.domain.UserDTO">delete from Member where userId = #{param1}</delete>
+</mapper>

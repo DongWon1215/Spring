@@ -34,5 +34,6 @@
 <form action="" method="post">
 <a href="/page/modify?index=${param.index}">Modify/Remove</a> <a href="/page/main">Todo List</a>
 </form>
+
 </body>
 </html>

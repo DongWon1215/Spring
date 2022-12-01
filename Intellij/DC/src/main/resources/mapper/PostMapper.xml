@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="inside.mapper.PostMapper">
+    <select id="selectAll" resultType="inside.domain.PostDTO">select * from Post</select>
+    <select id="selectByIndex" resultType="inside.domain.PostDTO">select * from Post where `index` = #{param1}</select>
+
+    <insert id="insertPost" parameterType="inside.domain.PostDTO">insert into Post(Title,Writer,Password,Content)
+        values(#{postTitle}, #{postWriter}, #{postPassword}, #{postContent})</insert>
+
+    <update id="updatePost" parameterType="inside.domain.PostDTO">update Post set Content = #{param3} where Password = #{param2} and `index` = #{param1}</update>
+
+    <delete id="deletePost" parameterType="inside.domain.PostDTO">delete from Post where `index` = #{param1}</delete>
+</mapper>
