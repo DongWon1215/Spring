@@ -15,16 +15,15 @@
 <form method="post">
     <table>
         <tr>
-            <td>${post.postIndex}</td>
-            <td>제목 </td>
-            <td><input type="text" name="title" value="${post.postTitle}" readonly> </td>
-        </tr>
-        <tr>
-            <td>내용 </td>
-            <td><textarea rows="60" cols="150" style="resize : none" name="content" placeholder="${post.postContent}"></textarea> </td>
+            <td></td>
+            <td><input type="text" name="title" value="${post.title}" readonly> </td>
         </tr>
         <tr>
             <td></td>
+            <td><textarea rows="60" cols="150" style="resize : none" name="content">${post.content}</textarea> </td>
+        </tr>
+        <tr>
+            <td><input type="hidden" name="password" value="${post.password}"></td>
             <td>
                 <input type="reset">
                 <input type="submit" value="수정">
@@ -32,7 +31,15 @@
         </tr>
     </table>
 </form>
+<!-- Vertically centered modal -->
+<div class="modal-dialog modal-dialog-centered">
+    ...
+</div>
 
+<!-- Vertically centered scrollable modal -->
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    ...
+</div>
 <form action="/page/delete" method="post" >
     <input type="hidden" name="index" value="${param.index}">
     <input type="submit" value="삭제">

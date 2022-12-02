@@ -32,10 +32,10 @@ public class UserService {
 
         if(userPhoto != null && !userPhoto.isEmpty() && userPhoto.getSize() > 0)
         {
-            String dirURI = "/uploadfile/profile";
+            String dirURI = "/uploadfile/profile/";
             String dirRealURI = request.getSession().getServletContext().getRealPath(dirURI);
 
-            newFilePath = userPhoto.getOriginalFilename();
+            newFilePath = userNickName + userPhoto.getOriginalFilename();
 
             try {
                 userPhoto.transferTo(new File(dirRealURI,newFilePath));
@@ -51,9 +51,26 @@ public class UserService {
 
         return false;
     }
-    public boolean updateUser(String id,String password, String nickname, String photo)
+    public boolean updateUser(String id,String password, String nickname, MultipartFile photo, HttpServletRequest request)
     {
-        if(userMapper.updateUser(id,password, nickname,photo) != 0)
+        String newFilePath = null;
+
+        if(photo != null && !photo.isEmpty() && photo.getSize() > 0)
+        {
+            String dirURI = "/uploadfile/profile/";
+            String dirRealURI = request.getSession().getServletContext().getRealPath(dirURI);
+
+            newFilePath = nickname + photo.getOriginalFilename();
+
+            try {
+                photo.transferTo(new File(dirRealURI,newFilePath));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            if(userMapper.updateUser(id,password,nickname,newFilePath) != 0)
+                return true;
+        }
+        if(userMapper.updateUser(id,password, nickname,null) != 0)
             return true;
 
         return false;

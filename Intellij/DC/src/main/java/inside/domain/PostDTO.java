@@ -16,20 +16,19 @@ import javax.validation.constraints.NotNull;
 public class PostDTO {
 
     @NotNull
-    private long postIndex;
+    private long index;
 
     @NotNull
-    private long postViews;
+    private long views;
 
     @NotNull
-    private String postTitle;
+    private String title;
 
     @NotBlank
-    private String postWriter;
+    private String writer;
 
-    @NotBlank
-    private String postPassword;
+    private String password;
 
     @NotNull
-    private String postContent;
+    private String content;
 }

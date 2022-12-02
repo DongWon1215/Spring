@@ -16,17 +16,17 @@ import javax.validation.constraints.NotNull;
 public class CommentDTO {
 
     @NotBlank
-    private String commentWriter;
+    private String writer;
 
     @NotBlank
-    private String commentPassword;
+    private String password;
 
     @NotNull
-    private String commentContent;
+    private String content;
 
     @NotNull
-    private long postIndex;
+    private long postindex;
 
     @NotNull
-    private long commentIndex;
+    private long index;
 }

@@ -12,6 +12,8 @@ public interface PostMapper {
     PostDTO selectByIndex (long postIndex);
 
     int insertPost(PostDTO postDTO);
-    int updatePost(long postIndex, String postTitle, String postContent, String postPassword);
+    int updatePost(long postIndex, String postContent, String postPassword);
     int deletePost(long postIndex);
+
+    int readPost(long postIndex);
 }

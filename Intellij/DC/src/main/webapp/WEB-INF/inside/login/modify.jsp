@@ -15,19 +15,19 @@
         <table>
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="id" readonly></td>
+                <td><input type="text" name="id" value="${loginInfo.userId}" readonly></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="password"></td>
+                <td><input type="password" name="password" value="${loginInfo.password}"></td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="name"></td>
+                <td><input type="text" name="name" value="${loginInfo.nickName}"></td>
             </tr>
             <tr>
                 <td>사진</td>
-                <td><input type="file" name="photo"></td>
+                <td><input type="file" name="photo" value="${loginInfo.photo}"></td>
             </tr>
             <tr>
                 <td></td>

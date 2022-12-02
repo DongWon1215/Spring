@@ -15,6 +15,7 @@ public class PostReadController {
     @GetMapping("/page/read")
     public void readTodo(Model model, @RequestParam("index") int index)
     {
-        model.addAttribute("postList", postService.getPostByIndex(index));
+        postService.readPost(index);
+        model.addAttribute("post", postService.getPostByIndex(index));
     }
 }

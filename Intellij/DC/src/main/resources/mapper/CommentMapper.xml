@@ -4,8 +4,8 @@
     <select id="selectPostAllComment" resultType="inside.domain.CommentDTO">select * from Comment where postIndex = #{param1}</select>
     <select id="selectCommentByIndex" resultType="inside.domain.CommentDTO">select * from Comment where `index` = #{param1}</select>
 
-    <insert id="insertComment" parameterType="inside.domain.CommentDTO">insert into Comment(Writer,Password,Content,postIndex)
-        values(#{commentWriter}, #{commentPassword}, #{commentContent}, #{postIndex})</insert>
+    <insert id="insertComment" parameterType="inside.domain.CommentDTO">insert into Comment(writer,password,content,postindex)
+        values(#{writer}, #{password}, #{content}, #{postindex})</insert>
     
     <update id="updateComment" parameterType="inside.domain.CommentDTO">update Comment set Content = #{param3} where Password = #{param2} and `index` = #{param1}</update>
 

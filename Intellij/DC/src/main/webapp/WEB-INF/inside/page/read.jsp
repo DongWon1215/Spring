@@ -14,21 +14,27 @@
 <body>
     <table>
         <tr>
-            <td><input type="text" name="title" value="${postList.postTitle}" readonly> </td>
+            <td><input type="text" name="title" value="${post.title}" readonly> </td>
+            <td>${post.views} </td>
         </tr>
         <tr>
-            <td>${postList.postWriter}} </td>
-            <td>${postList.postViews}} </td>
+            <td>${post.writer} </td>
         </tr>
         <tr>
-            <td>상태 </td>
-            <td><textarea name="context" ${postList.postContent} readonly > </td>
+            <td></td>
+            <td><textarea rows="60" cols="150" style="resize : none"  name="context" readonly>${post.content}</textarea> </td>
         </tr>
     </table>
-    <c:if test="${loginInfo eq null}">
-        <a href="/page/modify?index=${param.index}">Modify/Remove</a> <a href="/page/main">Todo List</a>
-        $("
+    <a href="/page/main">목록</a>
+    <c:if test="${loginInfo ne null}">
+        <a href="/page/modify?index=${param.index}">수정/삭제</a>
     </c:if>
+
+<div class="container">
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data" action="/commentAdd.jsp?"
+    </div>
+</div>
 
 </body>
 </html>

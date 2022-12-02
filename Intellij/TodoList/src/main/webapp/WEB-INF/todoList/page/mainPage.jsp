@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+    <!-- bootstrap.css>
 </head>
 <body>
 <h1>${title}</h1>
@@ -43,8 +44,6 @@
             <td>${todo.finish ? '완료' : '진행중'}</td>
         </tr>
     </c:forEach>
-
-
 
 </table>
 

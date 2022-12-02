@@ -29,18 +29,15 @@ public class UserRegisterController {
     }
 
     @PostMapping
-    public String reg(@RequestParam("id") String userId, @RequestParam("password") String userPassword, @RequestParam("name")String nickname, @RequestParam("photo")
+    public String reg(@RequestParam("userId") String userId, @RequestParam("password") String userPassword, @RequestParam("nickname")String nickname, @RequestParam("photo")
     MultipartFile photo,  HttpServletRequest request) throws Exception {
 
-        log.info("여긴 회원가입 페이지");
-        log.info(userId + userPassword);
-
         if(userId.matches("/^[a-zA-Z0-9]"))
-            return "redirect:error/loginfail";
+            return "redirect:error/registfail";
 
 
 
-        //userService.insertUser(userId, userPassword, nickname, photo,request);
+        userService.insertUser(userId, userPassword, nickname, photo,request);
 
         return "redirect:/login/login";
     }

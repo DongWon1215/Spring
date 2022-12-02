@@ -16,8 +16,8 @@
     <table>
         <c:if test="${loginInfo eq null}">
             <tr>
-                <td>작성자</td>
-                <td><input type="text" name="id"></td>
+                <td>아이디</td>
+                <td><input type="text" name="nickname"></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
@@ -31,12 +31,16 @@
         </tr>
         <tr>
             <td>내용</td>
-            <td><textarea rows="60" cols="150" style="resize : none" name="content"></textarea></td>
+
+            <c:if test="${loginInfo eq null}">
+                <div><img src="/uploadfile/profile/${loginInfo.photo}" width="100" height="100"/></div>
+            </c:if>
+            <td><textarea rows="60" cols="150" style="resize : none" name="context"></textarea></td>
         </tr>
         <tr>
             <td></td>
             <td><input type="reset">
-                <input type="submit" value = "register">
+                <input type="submit" value = "글쓰기">
             </td>
         </tr>
     </table>

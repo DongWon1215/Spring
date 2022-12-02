@@ -14,13 +14,16 @@ import javax.validation.constraints.NotNull;
 @Valid
 @ToString
 public class UserDTO {
+
     @NotBlank
     private String userId;
-    @NotBlank
-    private String userPassword;
-    @NotBlank
-    private String userNickName;
 
-    private String userPhoto;
+    @NotBlank
+    private String password;
+
+    @NotBlank
+    private String nickName;
+
+    private String photo;
 
 }
