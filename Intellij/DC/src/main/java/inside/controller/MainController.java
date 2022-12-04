@@ -2,6 +2,7 @@ package inside.controller;
 
 import inside.domain.PostDTO;
 import inside.domain.UserDTO;
+import inside.service.CommentService;
 import inside.service.PostService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,20 @@ public class MainController {
     @Autowired
     PostService postService;
 
+    @Autowired
+    CommentService commentService;
+
     @RequestMapping("/page/main")
     public String main(Model model)
     {
         List<PostDTO> list = new ArrayList<>();
         list = postService.getPostAll();
 
+
+//        int commentNum = commentService.getCommentAll().size();
+
         model.addAttribute("postList",list);
+//        model.addAttribute("reply",commentNum);
 
         return "/page/main";
     }
