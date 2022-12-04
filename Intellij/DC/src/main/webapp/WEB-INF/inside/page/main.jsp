@@ -39,7 +39,7 @@
     </tr>
 
     <c:forEach var="post" items="${postList}" varStatus="status">
-        <c:if test="${postList.size() > 15}">
+<%--        <c:if test="${postList.size() > 15}">--%>
         <tr>
             <td>${post.index}</td>
             <td><a href="/page/read?index=${post.index}">${post.title}</a></td>
@@ -49,7 +49,7 @@
             <td>${post.writer}</td>
             <td>${post.views}</td>
         </tr>
-        </c:if>
+<%--        </c:if>--%>
     </c:forEach>
 </table>
     <form action="/page/write" method="get">

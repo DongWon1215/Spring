@@ -13,13 +13,13 @@
     <!--bootstrap.css--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
-    <table>
+    <table style="place-content: center">
         <tr>
-            <td><input type="text" name="title" value="${post.title}" readonly> </td>
-            <td>${post.views} </td>
+            <td>${post.title}</td>
         </tr>
         <tr>
-            <td>${post.writer} </td>
+            <td style="text-align: justify">${post.writer} </td>
+            <td style="vertical-align: middle">${post.views} </td>
         </tr>
         <tr>
             <td></td>
@@ -31,20 +31,34 @@
         <a href="/page/modify?index=${param.index}">수정/삭제</a>
     </c:if>
 
-    <div class="comment">
-        <form action="/comment/" method="post">
-            <div class="fl">
-            <input type="text" name="id" placeholder="이름" style="vertical-align: ">
-            <input type="text" name="password" laceholder="비밀번호">
-            </div>
-            <textarea rows="3" cols="50" style="resize: none" name="context"></textarea>
+    <c:forEach var="comment" items="${commentList}" varStatus="status">
+        <li>
+            <div style="width: 10%;">${comment.writer}</div>
+            <div>${comment.content}</div>
+        </li>
+    <hr>
+    </c:forEach>
+    </table>
+    <div></div>
 
-            <input type="submit" value="작성">
+    <div class="comment">
+        <form action="/comment/add" method="post" style="vertical-align: center">
+            <div class="fl" style="width : 10%; height : 100px;float: left" >
+            <input type="text" name="id" placeholder="이름">
+            <input type="password" name="password" placeholder="비밀번호" style="float: left">
+                <input type="hidden" name="postindex" value="${post.index}">
+            </div>
+            <div style="float: inside">
+                <textarea rows="3" cols="50" style="resize: none" name="content"></textarea>
+                <input type="submit" value="작성">
+            </div>
+
+            <button onclick="modify"
         </form>
     </div>
 <div class="container">
     <div class="form-group">
-        <form method="post" enctype="multipart/form-data" action="/commentAdd.jsp?"
+        <form method="post" enctype="multipart/form-data" action="/commentAdd.jsp?"/>
     </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
