@@ -14,10 +14,10 @@ public class PageService {
     @Autowired(required = false)
     private PostMapper postMapper;
 
-    public List<PostDTO> selectPostPage()
+    public List<PostDTO> selectPostPage(int page)
     {
         List<PostDTO> list = new ArrayList<>();
-        list = postMapper.selectPage();
+        list = postMapper.selectPage(page);
 
         if(list != null)
             return list;
