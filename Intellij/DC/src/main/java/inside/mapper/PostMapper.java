@@ -9,6 +9,7 @@ import java.util.List;
 public interface PostMapper {
 
     List<PostDTO> selectAll();
+    List<PostDTO> selectPage();
     PostDTO selectByIndex (long postIndex);
 
     int insertPost(PostDTO postDTO);
