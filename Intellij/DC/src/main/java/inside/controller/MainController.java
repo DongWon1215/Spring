@@ -29,10 +29,16 @@ public class MainController {
         List<PostDTO> list = new ArrayList<>();
         list = postService.getPostAll();
 
+        for(PostDTO post : list)
+        {
+            post.setCommentnum(commentService.getCommentAll(post.getIndex()).size());
+        }
 
 //        int commentNum = commentService.getCommentAll().size();
 
         model.addAttribute("postList",list);
+
+
 //        model.addAttribute("reply",commentNum);
 
         return "/page/main";

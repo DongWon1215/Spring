@@ -11,5 +11,7 @@
 
     <update id="updatePost" parameterType="inside.domain.PostDTO">update post set Content = #{param3} where Password = #{param2} and `index` = #{param1}</update>
 
+    <update id="updatePostComment" parameterType="inside.domain.PostDTO">update post set commentnum = #{param2} where `index` = #{param1}</update>
+
     <delete id="deletePost" parameterType="inside.domain.PostDTO">delete from post where `index` = #{param1}</delete>
 </mapper>

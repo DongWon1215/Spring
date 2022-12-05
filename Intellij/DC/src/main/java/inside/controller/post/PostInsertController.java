@@ -31,10 +31,10 @@ public class PostInsertController {
         HttpSession session = request.getSession();
         UserDTO userInfo = (UserDTO)session.getAttribute("loginInfo");
         if(userInfo != null)
-            postService.insertPost(new PostDTO(0,0,title, userInfo.getNickName(), userInfo.getPassword(),context));
+            postService.insertPost(new PostDTO(0,0,0,title, userInfo.getNickName(), userInfo.getPassword(),context));
 
         else
-            postService.insertPost(new PostDTO(0,0,title, nickname, password,context));
+            postService.insertPost(new PostDTO(0,0,0,title, nickname, password,context));
 
 
         return "redirect:/page/main";

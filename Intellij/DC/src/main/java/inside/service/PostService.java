@@ -66,4 +66,12 @@ public class PostService {
         return false;
     }
 
+    public boolean updatePostComment(long index, long commentNum)
+    {
+        if(postMapper.updatePostComment(index,commentNum) != 0)
+            return true;
+
+        return false;
+    }
+
 }

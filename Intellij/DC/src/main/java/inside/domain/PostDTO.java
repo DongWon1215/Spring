@@ -21,6 +21,8 @@ public class PostDTO {
     @NotNull
     private long views;
 
+    private long commentnum;
+
     @NotNull
     private String title;
 
@@ -31,4 +33,5 @@ public class PostDTO {
 
     @NotNull
     private String content;
+
 }

@@ -22,17 +22,14 @@
     </tr>
 
     <c:forEach var="post" items="${postList}" varStatus="status" begin="${beginPost}">
-        <%--        <c:if test="${postList.size() > 15}">--%>
         <tr>
             <td>${post.index}</td>
-            <td><a href="/page/read?index=${post.index}">${post.title}</a></td>
-                <%--                <c:if test="${reply ne 0}">--%>
-                <%--                    <small><b>[&nbsp;<c:out value="reply" />&nbsp;</b></small>--%>
-                <%--                </c:if>--%>
+            <td><a href="/page/read?index=${post.index}">${post.title}<c:if test="${post.commentnum > 0}">
+                <small><b style="color: red">[&nbsp;<c:out value="${post.commentnum}" />&nbsp;]</b></small>
+                </c:if></a></td>
             <td>${post.writer}</td>
             <td>${post.views}</td>
         </tr>
-        <%--        </c:if>--%>
     </c:forEach>
 </table>
 
