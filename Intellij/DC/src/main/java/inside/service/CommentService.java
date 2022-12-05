@@ -48,10 +48,15 @@ public class CommentService {
 
         return false;
     }
-    public boolean deleteComment(long index)
+    public boolean deleteComment(long index, String password)
     {
-        if(commentMapper.deleteComment(index) != 0)
-            return true;
+        if(password.equals(commentMapper.selectCommentByIndex(index).getPassword()))
+        {
+            if (commentMapper.deleteComment(index) != 0)
+            {
+                return true;
+            }
+        }
 
         return false;
     }

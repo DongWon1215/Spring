@@ -14,7 +14,10 @@
 </head>
 <body>
 <h1>${title}</h1>
-
+<div id="loginBox">
+<c:if test="${loginInfo eq null}">
+    <a href="/login/login">로그인</a>
+</c:if>
 
 <c:if test="${loginInfo ne null}">
     ${loginInfo.userId}
@@ -29,52 +32,52 @@
         <input type="submit" value="회원 정보 수정">
     </form>
 </c:if>
+</div>
+<%@ include file="/WEB-INF/inside/page/list.jsp"%>
 
-<table>
-    <tr>
-        <td>번호</td>
-        <td>제목</td>
-        <td>작성자</td>
-        <td>조회수</td>
-    </tr>
-
-    <c:forEach var="post" items="${postList}" varStatus="status">
-<%--        <c:if test="${postList.size() > 15}">--%>
-        <tr>
-            <td>${post.index}</td>
-            <td><a href="/page/read?index=${post.index}">${post.title}</a></td>
-<%--                <c:if test="${reply ne 0}">--%>
-<%--                    <small><b>[&nbsp;<c:out value="reply" />&nbsp;</b></small>--%>
-<%--                </c:if>--%>
-            <td>${post.writer}</td>
-            <td>${post.views}</td>
-        </tr>
-<%--        </c:if>--%>
-    </c:forEach>
-</table>
     <form action="/page/write" method="get">
         <input type="submit" value="글쓰기">
-        <c:if test="${loginInfo eq null}">
-            <a href="/login/login">로그인</a>
-        </c:if>
     </form>
-<c:if test="${postList.size()/10 > 1}">
-    <nav aria-label="...">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <span class="page-link">Previous</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
-                <span class="page-link">2</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
-</c:if>
+
+
+<%--<c:if test="${postList.size()/10 > 1}">--%>
+<%--    <nav aria-label="...">--%>
+<%--        <ul class="pagination">--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="">--%>
+<%--                    <li class="page-item disabled">--%>
+<%--                        <span class="page-link" href="#" tabindex="-1" aria-disabled="false">Previous</span>--%>
+<%--                    </li>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <li class="page-item">--%>
+<%--                        <span class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</span>--%>
+<%--                        </li>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
+<%--            <c:forEach var="" items="" begin="" end="">--%>
+<%--                <c:if test="">--%>
+<%--                    <li class="page-item active" aria-current="page">--%>
+<%--                        <span class="page-link">2</span>--%>
+<%--                    </li>--%>
+<%--                </c:if>--%>
+<%--            <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
+<%--            </c:forEach>--%>
+<%--            <c:choose>--%>
+<%--                <c:when test="">--%>
+<%--                    <li class="page-item disabled">--%>
+<%--                        <span class="page-link" href="#" tabindex="+1" aria-disabled="false">Next</span>--%>
+<%--                    </li>--%>
+<%--                </c:when>--%>
+<%--                <c:otherwise>--%>
+<%--                    <li class="page-item">--%>
+<%--                        <span class="page-link" href="#" tabindex="+1" aria-disabled="true">Next</span>--%>
+<%--                    </li>--%>
+<%--                </c:otherwise>--%>
+<%--            </c:choose>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
+<%--</c:if>--%>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
