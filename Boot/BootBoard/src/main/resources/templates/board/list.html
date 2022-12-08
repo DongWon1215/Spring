@@ -45,7 +45,7 @@
         </th:block>
 
         <th:block th:each="num : ${#numbers.sequence(listPage.pagingStart,listPage.pagingEnd)}" th:with="active=${listPage.currentPage == num ? 'active' : ''}">
-          <li class="page-item active" th:classappend="${active}">
+          <li class="page-item" th:classappend="${active}">
             <a class="page-link" th:href="@{/board/list(p=${num})}" th:text="${num}"></a>
           </li>
         </th:block>

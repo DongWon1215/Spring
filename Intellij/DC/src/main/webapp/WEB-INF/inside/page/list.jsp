@@ -32,7 +32,33 @@
         </tr>
     </c:forEach>
 </table>
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <c:if test="${page.isPrevExist}">
+            <li class="page-item">
+                <span class="page-link">Previous</span>
+            </li>
+        </c:if>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <c:choose>
+            <c:when test="">
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">2</span>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items=""
+                <li class="page-item"><a class="page-link" href="#">${post.list}</a></li>
+            </c:otherwise>
+        </c:choose>
 
+        <c:if test="${page.isNextExist}">
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </c:if>
+    </ul>
+</nav>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 

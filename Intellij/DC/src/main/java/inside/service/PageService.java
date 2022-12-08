@@ -1,5 +1,6 @@
 package inside.service;
 
+import inside.domain.PageDTO;
 import inside.domain.PostDTO;
 import inside.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,13 @@ public class PageService {
     @Autowired(required = false)
     private PostMapper postMapper;
 
-    public List<PostDTO> selectPostPage(int page, int limit)
+    public PageDTO selectPostPage(int page, int limit)
     {
         List<PostDTO> list = new ArrayList<>();
         list = postMapper.selectPage(page, limit);
+        PageDTO pageDTO = new PageDTO(limit,page,postMapper.totalPost(),list);
 
-        if(list != null)
-            return list;
-
-        return null;
+        return pageDTO;
     }
 
 }

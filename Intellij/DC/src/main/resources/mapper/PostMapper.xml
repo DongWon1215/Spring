@@ -5,6 +5,8 @@
     <select id="selectByIndex" resultType="inside.domain.PostDTO">select * from post where `index` = #{param1}</select>
     <select id="select" resultType="inside.domain.PostDTO">select * from post where `index` = #{param1}</select>
 
+    <select id="totalPost" resultType="int">insert count(*) from post </select>
+
     <insert id="insertPost" parameterType="inside.domain.PostDTO">insert into post(title,writer,password,content)
         values(#{title}, #{writer}, #{password}, #{content})</insert>
 

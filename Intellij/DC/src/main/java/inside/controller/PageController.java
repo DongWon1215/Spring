@@ -15,9 +15,9 @@ public class PageController {
     PageService pageService;
 
     @GetMapping("/main/list")
-    public void getList(@RequestParam(value = "page",defaultValue = "1")int page, Model model)
+    public void getList(@RequestParam(value = "page",defaultValue = "1")int page, @RequestParam("limit") int limit,Model model)
     {
-        PageDTO pageDTO = pageService.selectPostPage(page, int limit);
+        PageDTO pageDTO = pageService.selectPostPage(page, limit);
 
         model.addAttribute("page", pageDTO);
     }

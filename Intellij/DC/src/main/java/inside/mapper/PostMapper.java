@@ -17,4 +17,6 @@ public interface PostMapper {
     int deletePost(long postIndex);
     int updatePostComment(long postIndex, long commentnum);
     int readPost(long postIndex);
+
+    int totalPost();
 }
