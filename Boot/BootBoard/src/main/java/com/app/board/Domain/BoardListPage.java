@@ -36,7 +36,7 @@ public class BoardListPage {
     private void calPageInfo()
     {
         // 끝번호 계산
-        this.pagingEnd = (int)(Math.ceil((this.totalCount * 1.0) / 10)) * 10;
+        this.pagingEnd = (int)(Math.ceil((this.currentPage * 1.0) / 10)) * 10;
 
         // 시작 번호 계산
         this.pagingStart = this.pagingEnd - 9;

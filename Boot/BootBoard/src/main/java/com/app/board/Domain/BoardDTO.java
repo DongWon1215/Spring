@@ -14,7 +14,7 @@ public class BoardDTO {
 
     private int bno;
     private String title;
-    private String Writer;
+    private String writer;
     private String content;
     private String photo;
     private LocalDate regdate;

@@ -1,7 +1,7 @@
 package com.app.board.service;
 
 import com.app.board.Domain.BoardDTO;
-import com.app.board.Domain.BoardWriteRequest;
+import com.app.board.Domain.BoardEditRequest;
 import com.app.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,20 +13,20 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 @Service
-public class BoardWriteService {
-
+public class BoardEditService {
     @Autowired
     private BoardMapper boardMapper;
 
-    public boolean writePage(BoardWriteRequest boardWriteRequest)
+    public int edit(BoardEditRequest boardEditRequest)
     {
-        MultipartFile file = boardWriteRequest.getFormFile();
+        MultipartFile file = boardEditRequest.getFormFile();
         File savedir = null;
         String newFileName = null;
 
-
-        if(file != null && !file.isEmpty() && file.getSize() > 0)
+        if(file != null && !file.isEmpty())
         {
+            // 새로운 파일 저장
+            // 이전 파일이 존재한다면 이전 파일 삭제
             String absolutePath = new File("").getAbsolutePath();
 
             String path = "photo";
@@ -51,15 +51,22 @@ public class BoardWriteService {
                 throw new RuntimeException(e);
             }
 
-            BoardDTO boardDTO = boardWriteRequest.toBoardDTO();
+            BoardDTO boardDTO = boardEditRequest.toBoardDTO();
 
             if(newFileName != null)
                 boardDTO.setPhoto(newFileName);
 
             try {
-                boardMapper.insert(boardDTO);
-            }
-            catch(SQLException e)
+                //db update
+                boardMapper.update(boardDTO);
+                if(newFileName != null && boardEditRequest.getOldFile() != null && !boardEditRequest.getOldFile().trim().isEmpty())
+                {
+                    File delOldFile = new File(new File("").getAbsolutePath(),"photo" + File.separator + boardEditRequest.getOldFile());
+                    if(delOldFile.exists())
+                        delOldFile.delete();
+                }
+
+            } catch (SQLException e)
             {
                 if(newFileName != null)
                 {
@@ -68,9 +75,9 @@ public class BoardWriteService {
                         delFile.delete();
                 }
             }
-
-            return true;
         }
-        return false;
+        // 새로운 파일 O , 이번파일 존재 O => 기존 파일 삭제 후 새로운 파일 저장
+        return 1;
     }
+
 }
