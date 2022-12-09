@@ -1,5 +1,6 @@
 package com.app.board.mapper;
 
+import com.app.board.Domain.BoardArticleDTO;
 import com.app.board.Domain.BoardDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -12,8 +13,12 @@ public interface BoardMapper {
     @Select("select * from tbl_board")
     List<BoardDTO> selectAll();
 
-    @Select("select * from tbl_board order by bno desc limit #{start},#{count}")
-    List<BoardDTO> selectList(@Param("start") int start, @Param("count") int count);
+//    @Select("select * from tbl_board order by bno desc limit #{start},#{count}")
+//    List<BoardDTO> selectList(@Param("start") int start, @Param("count") int count);
+
+
+    @Select("select *, (select count(*) from tbl_reply r  where r.bno=b.bno) as replycnt from tbl_board b order by b.bno desc limit #{start},#{count}")
+    List<BoardArticleDTO> selectList(@Param("start") int start, @Param("count") int count);
 
 
     @Select("select count(*) from tbl_board")

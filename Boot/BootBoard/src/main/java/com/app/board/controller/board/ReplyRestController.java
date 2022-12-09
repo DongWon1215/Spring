@@ -1,9 +1,7 @@
 package com.app.board.controller.board;
 
 import com.app.board.Domain.ReplyDTO;
-import com.app.board.service.ReplyInsertService;
-import com.app.board.service.ReplyListService;
-import com.app.board.service.ReplyReadService;
+import com.app.board.service.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +25,12 @@ public class ReplyRestController {
 
     @Autowired
     private ReplyReadService readService;
+
+    @Autowired
+    private ReplyDeleteSerivice deleteSerivice;
+
+    @Autowired
+    private ReplyEditService editService;
 
     //get /reply/{bno} =>list
     @GetMapping(value = "/{bno}", produces = MediaType.APPLICATION_JSON_VALUE)                    //produces : 반환하는 타입 rufwjd
@@ -54,8 +58,20 @@ public class ReplyRestController {
     }
 
     //put /reply/{rno} => reply
+    @PutMapping("/{rno}")
+    public ResponseEntity<Integer> editReply(@RequestBody ReplyDTO replyDTO, @PathVariable("rno") int rno)
+    {
+        replyDTO.setRno(rno);
+        return new ResponseEntity<>(editService.updateReply(replyDTO),HttpStatus.OK);
+    }
 
     //delate/reply/{rno} => 0 / 1, ok, fail
+    @DeleteMapping("/{rno}")
+    public ResponseEntity<Integer> delete(@PathVariable("rno") int rno)
+    {
 
+
+        return new ResponseEntity<>(deleteSerivice.deleteByRno(rno),HttpStatus.OK);
+    }
 
 }

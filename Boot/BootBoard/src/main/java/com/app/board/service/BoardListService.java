@@ -1,5 +1,6 @@
 package com.app.board.service;
 
+import com.app.board.Domain.BoardArticleDTO;
 import com.app.board.Domain.BoardDTO;
 import com.app.board.Domain.BoardListPage;
 import com.app.board.mapper.BoardMapper;
@@ -19,7 +20,7 @@ public class BoardListService {
 
     public BoardListPage getPage(int pageNum)
     {
-        List<BoardDTO>list = boardMapper.selectList((pageNum - 1) * 10,10);
+        List<BoardArticleDTO>list = boardMapper.selectList((pageNum - 1) * 10,10);
 
         log.info("==========================================" + list);
 
@@ -30,7 +31,7 @@ public class BoardListService {
         return boardListPage;
     }
 
-    public List<BoardDTO> getList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum)
+    public List<BoardArticleDTO> getList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum)
     {
         int index = (pageNum - 1) * 10;
         int count = 10;

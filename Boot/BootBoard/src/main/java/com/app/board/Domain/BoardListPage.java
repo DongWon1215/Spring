@@ -16,7 +16,7 @@ public class BoardListPage {
     private int currentPage;
 
     // 게시물의 리스트
-    private List<BoardDTO> list;
+    private List<BoardArticleDTO> list;
 
     // 전체 게시물의 개수
     private int totalCount;
@@ -55,7 +55,7 @@ public class BoardListPage {
 
     }
 
-    public BoardListPage(int countPerPage, int currentPage, List<BoardDTO> list, int totalCount)
+    public BoardListPage(int countPerPage, int currentPage, List<BoardArticleDTO> list, int totalCount)
     {
         this.list = list;
         this.totalCount= totalCount;
