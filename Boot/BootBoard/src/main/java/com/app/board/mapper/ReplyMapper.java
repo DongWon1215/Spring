@@ -18,10 +18,10 @@ public interface ReplyMapper {
     @Options(useGeneratedKeys = true, keyProperty = "rno", keyColumn = "rno")         //useGeneratedKeys : 자동으로 생성되는 값, ketProperty : insert 된 키 값
     int insertReply(ReplyDTO replyDTO);
 
-    @Delete("delete from tbl_reply where rno = #{rno)")
+    @Delete("delete from tbl_reply where rno = #{rno}")
     int deleteByRno(int rno);
 
-    @Update("update tbl_reply set bno =#{bno} , reply =#{reply} , replyer =#{replyer} , replydate = #{replydate},updatedate = now(updatedate) where rno = #{rno}")
+    @Update("update tbl_reply set bno=#{bno}, reply=#{reply}, replyer=#{replyer}, replydate=#{replydate}, updatedate=now() where rno=#{rno} ")
     int updateReply(ReplyDTO replyDTO);
 
 }

@@ -69,8 +69,6 @@ public class ReplyRestController {
     @DeleteMapping("/{rno}")
     public ResponseEntity<Integer> delete(@PathVariable("rno") int rno)
     {
-
-
         return new ResponseEntity<>(deleteSerivice.deleteByRno(rno),HttpStatus.OK);
     }
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function()
+    {
+      // $.ajax('/data.html',
+      //         {
+      //   success : function (data){
+      //     console.log(data);
+      //     $('body').append(data)
+      //   }
+      // })
+
+      // $.ajax({
+      //   url : '/data.html', success : function (data){
+      //     console.log(data)
+      //     $('body').append(data);
+      //   }
+      // })
+
+      // /parameter -get 방식으로 요청 name, price 전송
+      //   $('#btnSubmit').click(function (){
+      //
+      //       let name = $('#name').val();
+      //       let price = $('#price').val();
+      //       $.ajax({ url : '/parameter', type : 'get',  // post, put, delete 도 사용 가능
+      //           data : {name : name, price : price},                              // {} 또는 문자열 쿼리스트링 name=milk & price = 1000
+      //           success : function (data){
+      //               console.log(data);
+      //               $('body').append('<h3>' + data + '</h3>');
+      //           }
+      //       })
+      //   })
+      //
+      // $.get('/data.html',function(data)
+      // {
+      //     $('body').html(data)
+      // })
+
+        // $.get('/parameter',{name:'우유',price:3000},function (data){
+        //     $('body').html(data);
+        // })
+
+        // $.get('/data.json'/*URL*/,function (data){                                               // get 형식으로 데이터를 받을 때 마지막에 자료 형식을 지정해서 받을 수 있음
+        //     console.log(data);
+        //     $.each(data,function (index,item){
+        //         $('body').append('<h2>'+item.name+' : '+ item.price +'</h2>')
+        //     })
+        // }, 'json')
+
+        // $.getJSON('/data.json', function(data){
+        //     console.log(data);
+        //     $.each(data,function (index,item) {
+        //         $('body').append('<h2>' + item.name + ' : ' + item.price + '</h2>')
+        //     })
+        // })
+
+        // $('div').load('/data.html')
+
+        // $.ajax({
+        //     url : '/data.xml',
+        //     success : function (data)
+        //     {
+        //         $(data).find('product').each(function ()
+        //         {
+        //       let name = $(this).find('name').text();
+        //       let price = $(this).find('price').text();
+        //
+        //       $('div').append('<h3>' + name + ' : ' + price + '</h3>');
+        //     })
+        //     }
+        // })
+
+        $('#myForm').submit(function (){
+            let param1 = $(this).serialize();
+            let param2 = $(this).serializeArray();
+
+            console.log('param1',param1)
+            console.log('param2',param2)
+
+            $.get('parameter',param2,)
+
+            return false;
+        })
+
+    })
+  </script>
+
+</head>
+<body>
+
+<!--<div></div>-->
+
+<form id="myForm">
+    이름 : <input type="text" name="name" id="name">
+    가격 : <input type="text" name="price" id="price">
+    <input type="submit" id="btnSubmit" value="전송">
+</form>
+
+
+</body>
+</html>
