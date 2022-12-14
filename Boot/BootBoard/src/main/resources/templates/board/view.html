@@ -138,49 +138,52 @@
 </script>
 
 <script>
-  let replyList = $('#replyList');
   let editModal;
 
-  $(document).ready(function (){
-
+  $(document).ready(function ()
+  {
     editModal = new bootstrap.Modal('#replyEditModal')
 
     // 버튼 이벤트 등록
-    $('#btn_reply').click(insertReply)
-    $('#btn_edit').click(editReply)
+    $('#btn_reply').click(insertReply);
+    $('#btn_edit').click(editReply);
 
     // 페이지가 로드되면 리스트를 출력
-    setList()
-  })
+    setList();
+  });
+
     //비동기 통신 : 댓글 리스트 가져오기
-    function setList() {
-      $.ajax('/reply/'+bno,function(){
+    function setList()
+    {
+      $.ajax(
+              {
+                url : '/reply/'+bno,type:'get',async:true,dataType:'JSON', contentType: 'application/json', success:function(data)
+                {
+                  let list = data;
 
-                console.log('response', res.data)
+                  list.forEach((reply, index) =>
+                  {
+                    // 새로운 tr을 만들어서 replyIndex 영역에 추가
 
-                let list = res.data;
+                    const newTR = $('tr');
+                    let html = '<td class="col-2">'+reply.replyer+'</td>';
+                    html += '<td class="col">'+reply.reply+'</td>';
+                    html += '<td class="col-2">'+reply.replydate+'</td>';
+                    html += '<td class="col-2"> ' +
+                            '<a href="javascript:showEditModal('+reply.rno+')" class="badge bg-warning text-decoration-none">수정</a> ' +
+                            '<a href="javascript:deleteReply('+reply.rno+')" class="badge bg-danger text-decoration-none">삭제</a> ' +
+                            '</td>';
 
-                list.forEach((reply, index) => {
-                  // 새로운 tr을 만들어서 replyIndex 영역에 추가
+                    newTR.html(html).addClass('fs-6 text-center').attr('tr-index', reply.rno);
 
-                  const newTR = $('tr');
-                  let html = '<td class="col-2">'+reply.replyer+'</td>'
-                  html += '<td class="col">'+reply.reply+'</td>'
-                  html += '<td class="col-2">'+reply.replydate+'</td>'
-                  html += '<td class="col-2"> ' +
-                          '<a href="javascript:showEditModal('+reply.rno+')" class="badge bg-warning text-decoration-none">수정</a> ' +
-                          '<a href="javascript:deleteReply('+reply.rno+')" class="badge bg-danger text-decoration-none">삭제</a> ' +
-                          '</td>'
-
-                  newTR.html(html)  // $().html(html);
-                  newTR.addClass('fs-6 text-center');
-                  newTR.attr('tr-index', reply.rno);
-
-                  // 부모 태그에 요소 추가
-                  replyList.appendChild(newTR)
-
-                })
-              })
+                    // 부모 태그에 요소 추가
+                    $('#replyList').append(newTR);
+                  })
+                },
+        error:function (err){
+          console.log(err);
+      }
+      })
     }
 
     function insertReply() {
@@ -192,60 +195,66 @@
                 replyer : $('#replyer').val()
               }
 
-      axios.post('/reply', payload)
-              .then(res => {
+      $.ajax(
+              {
+                url:'/reply', type:'post', data: JSON.stringify(payload), dataType:'JSON',contentType:'application/json', success:function(data)
+                  {
+                  const reply = data
 
-                const reply = res.data
+                  //replyList 영역에 새로운 tr 추가
+                  const newTR = $("tr");
+                  let html = '<td class=""col-2">' + reply.replyer + '</td>';
+                  html += '<td class="col">' + reply.reply + '</td>';
+                  html += '<td class="col-2">' + reply.replydate + '</td>';
+                  html += '<td class="col-2">' + '<a href="javascript:showEditModal(' + reply.rno + ')" class="badge bg-warning text-decoration-none">수정</a>' +
+                  '<a  href="javascript:deleteReply(' + reply.rno + ')" class="badge bg-danger text-decoration-none">삭제</a>' + '</td>'
 
-                //replyList 영역에 새로운 tr 추가
-                const newTR = $("tr");
-                let html = '<td class=""col-2">' + reply.replyer + '</td>'
-                html += '<td class="col">' + reply.reply + '</td>'
-                html += '<td class="col-2">' + reply.replydate + '</td>'
-                html += '<td class="col-2">' + '<a href="javascript:showEditModal(' + reply.rno + ')" class="badge bg-warning text-decoration-none">수정</a>' +
-                '<a  href="javascript:deleteReply(' + reply.rno + ')" class="badge bg-danger text-decoration-none">삭제</a>' + '</td>'
+                  newTR.html(html).addClass('fs-6 text-center').attr('tr-index', reply.rno);
 
-                newTR.html(html);
-                newTR.addClass('fs-6 text-center');
-                newTR.attr('tr-index', reply.rno);
+                  //부모 태그에 요소를 추가
+                  $('#replyList').append(newTR);
 
-                //부모 태그에 요소를 추가
-                replyList.appendChild(newTR)
-
-                $('#reply').val('');
-                $('#replyer').val('');
+                  $('#reply').val('');
+                  $('#replyer').val('');
+                  },
+                  error:function(err)
+                    {
+                      console.log(err);
+                    }
               })
-              .catch(err => console.log(err))
-
-      console.log("payload", payload)
     }
 
-    function deleteReply(rno) {
-
-      if(!confirm('삭제하시겠습니까?')){
+    function deleteReply(rno)
+    {
+      if(!confirm('삭제하시겠습니까?'))
         return;
-      }
 
-      console.log('rno >>> ', rno)
+      console.log('rno >>> ', rno);
 
-      axios.delete('/reply/'+rno)
-              .then( res => {
+      $.ajax(
+              {
+                url: '/reply/' + rno, type:'delete',success: function (data) {
+                  console.log('delete - response => ', data)
 
-                console.log('delete - response => ', res.data)
-
-                if( res.data == 1){
-                  // 화면에서 tr-index == rno 행을삭제
-                  // 삭제 대상 행
-                  const delTR = $('tr[tr-index="'+rno+'"]');
-                  replyList.removeChild(delTR)
-                  alert('삭제되었습니다.')
-                } else {
-                  alert('삭제할 대상이 존재하지 않습니다.')
+                  if (data == 1)
+                  {
+                    // 화면에서 tr-index == rno 행을삭제
+                    // 삭제 대상 행
+                    const delTR = $('tr[tr-index="' + rno + '"]');
+                    $('#replyList').remove(delTR);
+                    alert('삭제되었습니다.');
+                  }
+                  else
+                  {
+                    alert('삭제할 대상이 존재하지 않습니다.');
+                  }
                 }
-
-              })
-              .catch(
-                      err => console.log(err))
+                , error: function (err)
+                {
+                  console.log(err);
+                }
+              }
+            )
     }
 
     function showEditModal(rno)
@@ -271,15 +280,22 @@
                 replydate : $('#ereplydate').val()
               }
 
-      axios.put('/reply/'+ payload.rno,payload)
-              .then(res=>{
-                console.log(res.data)
-                const editTD = $('tr[tr-index="' + payload.rno + '"]>td');
-                editTD[1].textContent = payload.reply
+      $.ajax(
+              {
+                url:'/reply/'+ payload.rno,type:'put',data:JSON.stringify(payload),dataType:'JSON', contentType: 'application/json',success:function (data)
+                {
+                  console.log(data);
+                  const editTD = $('tr[tr-index="' + payload.rno + '"]>td');
+                  editTD[1].textContent = payload.reply;
 
-                editModal.hide()
-              })
-              .catch(err=>console.log(err))
+                  editModal.hide();
+                },
+                error:function (err)
+                {
+                  console.log(err);
+                }
+              }
+            )
     }
 </script>
 
