@@ -2,6 +2,7 @@ package com.app.board.service;
 
 import com.app.board.Domain.BoardDTO;
 import com.app.board.Domain.BoardListPage;
+import com.app.board.Repository.BoardRepository;
 import com.app.board.mapper.BoardMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,13 @@ import java.util.List;
 @Log4j2
 public class BoardDeleteService {
     @Autowired
-    private BoardMapper boardMapper;
+    private BoardRepository boardRepository;
 
     public int deleteByBno(int bno)
     {
-        BoardDTO dto = boardMapper.selectByBno(bno);
+        BoardDTO dto = boardRepository.findAllById(bno);
 
-        boardMapper.deleteByBno(bno);
+        boardRepository.deleteById(bno);
 
         if(dto.getPhoto() != null)
         {

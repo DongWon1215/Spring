@@ -29,4 +29,5 @@ public class MapperTest {
 
         deptMapper.updateDept(deptDTO);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.app.board.service;
 
+import com.app.board.Repository.ReplyRepository;
 import com.app.board.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class ReplyDeleteSerivice {
 
     @Autowired
-    private ReplyMapper replyMapper;
+    private ReplyRepository replyRepository;
 
 
-    public int deleteByRno(int rno)
+    public int deleteByRno(Integer rno)
     {
-        return replyMapper.deleteByRno(rno);
+        return replyRepository.deleteById(rno);
     }
 
 }

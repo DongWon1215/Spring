@@ -2,6 +2,7 @@ package com.app.board.service;
 
 import com.app.board.Domain.BoardDTO;
 import com.app.board.Domain.BoardWriteRequest;
+import com.app.board.Repository.BoardRepository;
 import com.app.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class BoardWriteService {
 
     @Autowired
-    private BoardMapper boardMapper;
+    private BoardRepository boardRepository;
 
     public boolean writePage(BoardWriteRequest boardWriteRequest)
     {
