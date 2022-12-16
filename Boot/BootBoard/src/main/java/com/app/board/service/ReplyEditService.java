@@ -14,7 +14,7 @@ public class ReplyEditService {
 
     public int updateReply(ReplyDTO replyDTO)
     {
-        return replyRepository.save(replyDTO);
+        return replyRepository.save(replyDTO) != null ? 1 : 0;
     }
 
 }

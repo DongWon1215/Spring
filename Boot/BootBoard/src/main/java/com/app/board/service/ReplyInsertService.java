@@ -14,6 +14,6 @@ public class ReplyInsertService {
 
     public int insertReply(ReplyDTO replyDTO)
     {
-        return replyRepository.save(replyDTO);
+        return replyRepository.save(replyDTO) != null ? 1 : 0;
     }
 }

@@ -14,7 +14,7 @@ public class ReplyDeleteSerivice {
 
     public int deleteByRno(Integer rno)
     {
-        return replyRepository.deleteById(rno);
+        return replyRepository.deleteByRno(rno);
     }
 
 }

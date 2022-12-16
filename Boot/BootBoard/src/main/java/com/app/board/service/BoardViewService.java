@@ -12,8 +12,8 @@ public class BoardViewService {
     @Autowired
     private BoardRepository boardRepository;
 
-    public BoardDTO getBoardDTO(int bno)
+    public BoardDTO getBoardDTO(Integer bno)
     {
-        return boardMapper.selectByBno(bno);
+        return boardRepository.findById(bno).get();
     }
 }

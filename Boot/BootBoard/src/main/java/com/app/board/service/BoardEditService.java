@@ -4,6 +4,7 @@ import com.app.board.Domain.BoardDTO;
 import com.app.board.Domain.BoardEditRequest;
 import com.app.board.Repository.BoardRepository;
 import com.app.board.mapper.BoardMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 @Service
+@Log4j2
 public class BoardEditService {
     @Autowired
     private BoardRepository boardRepository;
@@ -51,30 +53,32 @@ public class BoardEditService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
 
-            BoardDTO boardDTO = boardEditRequest.toBoardDTO();
+        BoardDTO boardDTO = boardEditRequest.toBoardDTO();
 
-            if(newFileName != null)
-                boardDTO.setPhoto(newFileName);
+        if (newFileName != null)
+            boardDTO.setPhoto(newFileName);
 
-            try {
-                //db update
-                boardMapper.update(boardDTO);
-                if(newFileName != null && boardEditRequest.getOldFile() != null && !boardEditRequest.getOldFile().trim().isEmpty())
-                {
-                    File delOldFile = new File(new File("").getAbsolutePath(),"photo" + File.separator + boardEditRequest.getOldFile());
-                    if(delOldFile.exists())
-                        delOldFile.delete();
-                }
-
-            } catch (SQLException e)
+        try
+        {
+            //db update
+            boardRepository.save(boardDTO);
+            if (newFileName != null && boardEditRequest.getOldFile() != null && !boardEditRequest.getOldFile().trim().isEmpty())
             {
-                if(newFileName != null)
-                {
-                    File delFile = new File(savedir, newFileName);
-                    if(delFile.exists())
-                        delFile.delete();
-                }
+                File delOldFile = new File(new File("").getAbsolutePath(), "photo" + File.separator + boardEditRequest.getOldFile());
+                if (delOldFile.exists())
+                    delOldFile.delete();
+            }
+        }
+
+        catch (Exception e)
+        {
+            if (newFileName != null)
+            {
+                File delFile = new File(savedir, newFileName);
+                if (delFile.exists())
+                    delFile.delete();
             }
         }
         // 새로운 파일 O , 이번파일 존재 O => 기존 파일 삭제 후 새로운 파일 저장

@@ -14,7 +14,7 @@ public class ReplyListService {
     @Autowired
     private ReplyRepository replyRepository;
 
-    public List<ReplyDTO> selectAll(int bno)
+    public List<ReplyDTO> selectAll(Integer bno)
     {
         return replyRepository.findByBno(bno);
     }

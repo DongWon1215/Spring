@@ -14,7 +14,7 @@ public class ReplyReadService {
 
     public ReplyDTO readReply(Integer rno)
     {
-        return replyRepository.findByBno(rno);
+        return replyRepository.findById(rno).get();
     }
 
 }

@@ -18,13 +18,13 @@ public class BoardDeleteService {
     @Autowired
     private BoardRepository boardRepository;
 
-    public int deleteByBno(int bno)
+    public int deleteByBno(Integer bno)
     {
-        BoardDTO dto = boardRepository.findAllById(bno);
+        BoardDTO dto = boardRepository.findById(bno).get();
 
-        boardRepository.deleteById(bno);
+        int result = boardRepository.deleteByBno(bno);
 
-        if(dto.getPhoto() != null)
+        if(result > 0 && dto.getPhoto() != null)
         {
             File delFile = new File(new File("").getAbsolutePath(),"photo" + File.separator + dto.getPhoto());
 
@@ -34,6 +34,6 @@ public class BoardDeleteService {
 
         // 삭제 결과
 
-        return 1;
+        return result;
     }
 }

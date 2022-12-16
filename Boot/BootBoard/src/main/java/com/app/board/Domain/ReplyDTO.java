@@ -28,9 +28,9 @@ public class ReplyDTO {
     @Column
     private String replyer;
 
-    @Column
+    @Column(insertable = false,updatable = false)
     private String replydate;
 
-    @Column
+    @Column(insertable = false)
     private String updatedate;
 }

@@ -23,7 +23,7 @@ public class BoardDTO {
     @Column
     private String title;
 
-    @Column
+    @Column(updatable = false)
     private String writer;
 
     @Column
@@ -32,9 +32,9 @@ public class BoardDTO {
     @Column
     private String photo;
 
-    @Column
+    @Column(insertable = false,updatable = false)       // 테이블에 입력할 떄 자동으로 입력됨, 데이터 수정시에도 값이 변경되면 안됨
     private LocalDate regdate;
 
-    @Column
+    @Column(insertable = false)                         // 테이블에 입력할 때 자동으로 입력됨,데이터 수정시 값을 변경해야 함
     private LocalDate updatedate;
 }

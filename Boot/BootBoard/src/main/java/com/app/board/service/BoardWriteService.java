@@ -25,6 +25,7 @@ public class BoardWriteService {
         File savedir = null;
         String newFileName = null;
 
+        boolean result = false;
 
         if(file != null && !file.isEmpty() && file.getSize() > 0)
         {
@@ -51,27 +52,27 @@ public class BoardWriteService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-            BoardDTO boardDTO = boardWriteRequest.toBoardDTO();
-
-            if(newFileName != null)
-                boardDTO.setPhoto(newFileName);
-
-            try {
-                boardMapper.insert(boardDTO);
-            }
-            catch(SQLException e)
-            {
-                if(newFileName != null)
-                {
-                    File delFile = new File(savedir, newFileName);
-                    if(delFile.exists())
-                        delFile.delete();
-                }
-            }
-
-            return true;
         }
-        return false;
+
+        BoardDTO boardDTO = boardWriteRequest.toBoardDTO();
+
+        if (newFileName != null)
+            boardDTO.setPhoto(newFileName);
+
+        try
+        {
+            result = boardRepository.save(boardDTO) != null ? true : false;
+        }
+
+        catch (Exception e)
+        {
+            if (newFileName != null)
+            {
+                File delFile = new File(savedir, newFileName);
+                if (delFile.exists())
+                    delFile.delete();
+            }
+        }
+        return result;
     }
 }
