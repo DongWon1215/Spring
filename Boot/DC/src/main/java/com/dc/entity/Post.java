@@ -1,6 +1,7 @@
 package com.dc.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -41,9 +42,11 @@ public class Post {
     private LocalDate writeDate;
 
     @Column
+    @ColumnDefault("0")
     private int recommend;          // 개추 수
 
     @Column
+    @ColumnDefault("0")
     private int views;              // 조회 수
 
 }
