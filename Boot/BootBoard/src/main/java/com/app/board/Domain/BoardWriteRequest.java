@@ -12,12 +12,17 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardWriteRequest {
 
     private String title;
-    private String writer;
+    private Integer writer;
     private String content;
     private MultipartFile formFile;
 
+//    public BoardDTO toBoardDTO()
+//    {
+//        return BoardDTO.builder().title(title).writer(writer).content(content).build();
+//    }
+
     public BoardDTO toBoardDTO()
     {
-        return BoardDTO.builder().title(title).writer(writer).content(content).build();
+        return BoardDTO.builder().title(title).writer(BoardMember.builder().idx(writer).build()).content(content).build();
     }
 }

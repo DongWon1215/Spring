@@ -70,7 +70,8 @@
         <h5 class="title my-2">댓글 작성</h5>
         <div class="mb-3">
           <label class="form-label">작성자</label>
-          <input type="text" class="form-control" id="replyer">
+          <input type="text" class="form-control" th:value="${board.writer.idx}">
+          <input type="text" class="form-control" id="repler">
         </div>
         <div class="mb-3">
           <label class="form-label">내용</label>

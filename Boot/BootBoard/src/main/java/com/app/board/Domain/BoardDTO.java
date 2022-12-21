@@ -23,8 +23,10 @@ public class BoardDTO {
     @Column
     private String title;
 
-    @Column(updatable = false)
-    private String writer;
+
+    @ManyToOne
+    @JoinColumn(name = "writer")
+    private BoardMember writer;
 
     @Column
     private String content;

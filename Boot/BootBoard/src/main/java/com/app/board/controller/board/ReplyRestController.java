@@ -41,7 +41,7 @@ public class ReplyRestController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    //post/reply => reply       JSON 데이터를 받아서 DB에 insert
+    //post  /reply => reply       JSON 데이터를 받아서 DB에 insert
     @PostMapping
     public ResponseEntity<ReplyDTO> insertReply(@RequestBody ReplyDTO replyDTO)
     {
@@ -57,7 +57,7 @@ public class ReplyRestController {
         return new ResponseEntity<>(readService.readReply(replyDTO.getRno()),HttpStatus.OK);
     }
 
-    //put /reply/{rno} => reply
+    //put   /reply/{rno} => reply
     @PutMapping("/{rno}")
     public ResponseEntity<Integer> editReply(@RequestBody ReplyDTO replyDTO, @PathVariable("rno") int rno)
     {
@@ -65,7 +65,7 @@ public class ReplyRestController {
         return new ResponseEntity<>(editService.updateReply(replyDTO),HttpStatus.OK);
     }
 
-    //delate/reply/{rno} => 0 / 1, ok, fail
+    //delate    /reply/{rno} => 0 / 1, ok, fail
     @DeleteMapping("/{rno}")
     public ResponseEntity<Integer> delete(@PathVariable("rno") int rno)
     {

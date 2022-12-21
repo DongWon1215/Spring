@@ -27,7 +27,7 @@ public class BoardRepositoryTest {
     {
         //BoardWriteRequest -> Entity -> save()
 
-        BoardWriteRequest writeRequest = BoardWriteRequest.builder().title("한화의").writer("김성근").content("감동님 사랑해").build();
+        BoardWriteRequest writeRequest = BoardWriteRequest.builder().title("한화의").writer(0).content("감동님 사랑해").build();
 
         BoardDTO boardDTO = writeRequest.toBoardDTO();
 

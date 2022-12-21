@@ -32,10 +32,21 @@
             Account
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">로그인</a></li>
-            <li><a class="dropdown-item" href="#">회원가입</a></li>
+
+            <li sec:authorize="isAuthenticated()">
+              <span sec:authentication="principal.boardmember"></span>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+              <span sec:authentication="principal.boardmember.username"></span>
+            </li>
+              <span sec:authentication="principal.boardmember.userid"></span>
+            </li>
+            <li>아이디</li>
+            <li>이름</li>
+            <li sec:authorize="!isAuthenticated()"><a class="dropdown-item" href="/auth/login">로그인</a></li>
+<!--            <li><a class="dropdown-item" href="#">회원가입</a></li>-->
             <!--                        <li><hr class="dropdown-divider"></li>--> <!--드롭박스 중간에 구분해주는 선-->
-            <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/auth/logout">로그아웃</a></li>
           </ul>
         </li>
         <li class="nav-item">
