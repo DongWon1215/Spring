@@ -1,4 +1,4 @@
-package com.dc.dc.Entity;
+package com.dc.entity;
 
 import lombok.*;
 
@@ -6,18 +6,20 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "post")
+@Table(name = "comment")
 @Getter
 @Setter
 @ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
-
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer index;
+    private Integer idx;
+
+    @Column
+    private Integer postIndex;
 
     @Column
     private String title;
@@ -31,13 +33,10 @@ public class Post {
     @Column
     private String content;
 
-    @Column
-    private String category;
+    @Column(updatable = false)
+    private String img;
 
     @Column(insertable = false,updatable = false)
     private LocalDate writeDate;
-
-    @Column
-    private int suggestion;
 
 }

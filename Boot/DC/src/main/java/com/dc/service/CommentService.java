@@ -1,11 +1,10 @@
-package com.dc.dc.Service;
+package com.dc.service;
 
-import com.dc.dc.Entity.Comment;
-import com.dc.dc.Repository.CommentRepository;
+import com.dc.entity.Comment;
+import com.dc.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +15,8 @@ public class CommentService {
 
     public int insertComment(Comment comment)
     {
+
+
         return repository.save(comment) != null ? 1 : 0;
     }
 

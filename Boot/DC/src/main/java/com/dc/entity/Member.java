@@ -1,4 +1,4 @@
-package com.dc.dc.Entity;
+package com.dc.entity;
 
 import lombok.*;
 
@@ -28,6 +28,5 @@ public class Member {
 
     @Column
     private String authorities;
-
 
 }

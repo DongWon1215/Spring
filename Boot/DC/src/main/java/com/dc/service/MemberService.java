@@ -1,9 +1,9 @@
-package com.dc.dc.Service;
+package com.dc.service;
 
-import com.dc.dc.Entity.Member;
-import com.dc.dc.Repository.CommentRepository;
-import com.dc.dc.Repository.MemberRepository;
-import com.dc.dc.Repository.PostRepository;
+import com.dc.entity.Member;
+import com.dc.repository.CommentRepository;
+import com.dc.repository.MemberRepository;
+import com.dc.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
