@@ -12,7 +12,6 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query("select p from Post p where p.writer = ?1 and p.password = ?2")
     Post findByWriterAndPassword(String writer, String password);
-    List<Post> findByCategory(String category);
 
     @Transactional
     @Modifying

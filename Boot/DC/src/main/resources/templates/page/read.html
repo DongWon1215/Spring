@@ -10,8 +10,8 @@
         <td>${post.title}</td>
     </tr>
     <tr>
-<!--        <td style="text-align: justify" th:text="${post.writer}"> </td>-->
-<!--        <td style="vertical-align: middle" th:text="${post.views}"> </td>-->
+        <td style="text-align: justify" th:text="${post.writer}"> </td>
+        <td style="vertical-align: middle" th:text="${post.views}"> </td>
     </tr>
     <tr>
         <td></td>
@@ -23,10 +23,10 @@
 </c:if>
 <table class="comment-table">
     <tbody id="commentList">
-<!--    <li>-->
-<!--        <div style="width: 10%;" th:text="${comment.writer}"></div>-->
-<!--        <div>${comment.content}</div>-->
-<!--    </li>-->
+    <li>
+        <div style="width: 10%;" th:text="${comment.writer}"></div>
+        <div>${comment.content}</div>
+    </li>
     <hr>
     </tbody>
 </table>
@@ -116,8 +116,8 @@
         $(this).find('form')[0].reset();
     })
 
-    // const btn_commendDelete = document.querySelector("btn_commendDelete");
-    // btn_commendDelete.addEventListener('click',deleteComment());
+    const btn_commendDelete = document.querySelector("btn_commendDelete");
+    btn_commendDelete.addEventListener('click',deleteComment());
 
     $('#modifymodal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)

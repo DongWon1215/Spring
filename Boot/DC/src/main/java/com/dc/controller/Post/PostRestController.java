@@ -1,13 +1,13 @@
 package com.dc.controller.Post;
 
+import com.dc.domain.PostWriteRequest;
 import com.dc.entity.Post;
 import com.dc.service.PostService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/post")
 @Log4j2
 public class PostRestController {
@@ -23,17 +23,18 @@ public class PostRestController {
     @Autowired
     private PostService service;
 
-    @GetMapping({"/read"})
-    public void viewPage(@RequestParam("index") Integer postIndex, @RequestParam(value = "page",defaultValue = "1") int pageNum, Model model)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Post>> viewPage()
     {
-        model.addAttribute("curPage",pageNum);
-        model.addAttribute("postIndex",service.findPostByIdx(postIndex).getIdx());
-        model.addAttribute("post",service.findPostByIdx(postIndex));
+        return new ResponseEntity<>(service.getPostList(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<List<Post>> writePost(@RequestBody Post post, @RequestParam("img")MultipartFile img)
+    public ResponseEntity<List<Post>> writePost(@RequestBody PostWriteRequest writeRequest)
     {
+        MultipartFile img = writeRequest.getImg();
+        Post post = writeRequest.toPost();
+
         File saveDir = null;
         String newFileName = null;
 
@@ -78,7 +79,7 @@ public class PostRestController {
             }
         }
 
-        return new ResponseEntity<>(service.getPostList(post.getCategory()), HttpStatus.OK);
+        return new ResponseEntity<>(service.getPostList(), HttpStatus.OK);
     }
 
     @PutMapping({"/{index}"})

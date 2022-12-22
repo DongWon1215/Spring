@@ -27,9 +27,9 @@ public class PostService {
         return repository.save(post) != null ? 1 : 0;
     }
 
-    public List<Post> getPostList(String category)
+    public List<Post> getPostList()
     {
-        return repository.findByCategory(category);
+        return repository.findAll();
     }
 
     public Post findPostByIdx(Integer index)

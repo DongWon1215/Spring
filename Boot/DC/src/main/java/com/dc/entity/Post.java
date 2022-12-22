@@ -33,9 +33,6 @@ public class Post {
     private String content;
 
     @Column
-    private String category;        // 게시판
-
-    @Column
     private String img;
 
     @Column(insertable = false,updatable = false)
