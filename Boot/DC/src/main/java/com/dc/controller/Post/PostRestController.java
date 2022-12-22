@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,9 +31,12 @@ public class PostRestController {
     }
 
     @PostMapping
-    public ResponseEntity<List<Post>> writePost(@RequestBody PostWriteRequest writeRequest)
+    public ResponseEntity<List<Post>> writePost(PostWriteRequest writeRequest)
     {
         MultipartFile img = writeRequest.getImg();
+
+        log.info("request = " + writeRequest);
+
         Post post = writeRequest.toPost();
 
         File saveDir = null;
@@ -43,14 +47,16 @@ public class PostRestController {
         if(img != null && img.getSize() > 0 && !img.isEmpty())
         {
             String absolutePath = new File("").getAbsolutePath();
-            String path = "dccon";
+            String path = "resource\\meme";
 
             saveDir =new File(absolutePath,path);
+
+            log.info(saveDir);
 
             if(!saveDir.exists())
                 saveDir.mkdir();
 
-            newFileName = path+img.getOriginalFilename();
+            newFileName = img.getOriginalFilename();
 
             File newfile =new File(saveDir,newFileName);
 
@@ -65,8 +71,12 @@ public class PostRestController {
 
             if(newFileName != null)
                 post.setImg(newFileName);
+
+
             http = HttpStatus.OK;
         }
+
+        post.setWriteDate(LocalDate.now());
 
         if(service.insertPost(post) < 1)
         {
@@ -92,7 +102,7 @@ public class PostRestController {
         if(img != null && img.getSize() > 0 && !img.isEmpty())
         {
             String absolutePath = new File("").getAbsolutePath();
-            String path = "dccon";
+            String path = "resource\\meme";
 
             saveDir =new File(absolutePath,path);
 

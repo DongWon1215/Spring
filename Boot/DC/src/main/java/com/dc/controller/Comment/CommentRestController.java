@@ -37,14 +37,14 @@ public class CommentRestController {
         if(img != null && img.getSize() > 0 && !img.isEmpty())
         {
             String absolutePath = new File("").getAbsolutePath();
-            String path = "dccon";
+            String path = "resource\\dccon";
 
             saveDir =new File(absolutePath,path);
 
             if(!saveDir.exists())
             saveDir.mkdir();
 
-            newFileName = path+img.getOriginalFilename();
+            newFileName = img.getOriginalFilename();
 
             File newfile =new File(saveDir,newFileName);
 

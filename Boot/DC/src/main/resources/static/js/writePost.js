@@ -18,20 +18,24 @@ function setframe()
                     '    Board Write\n' +
                     '  </div>\n' +
                     '  <form method="post" enctype="multipart/form-data">\n' +
+                    '<th:block th:if="${#authentication.principal">' +
+                    '   <tr>\n' +
+                    '<td>닉네임</td>\n' +
+                    '<td><input type="text" id="writer"></td>\n' +
+                    '<td>비밀번호</td>\n' +
+                    '<td><input type="password" id="password"></td>\n' +
+                    '</tr>'+
+                    '</th:block>'+
                     '    <div class="mb-3">\n' +
                     '      <label for="title" class="form-label">제목</label>\n' +
-                    '      <input type="text" class="form-control" id="title" name="title">\n' +
+                    '      <input type="text" style="width: 800px" id="title" name="title">\n' +
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
                     '<th:block th:if="${#authentication.principal">'+
-                    '      <label for="writer" class="form-label">작성자</label>\n' +
-                    '      <input type="name" class="form-control" th:value="${#authentication.principal.boardMember.idx} readonly">\n' +
-                    '      <input type="name" class="form-control" id="writer" name="writer" th:value="${#authentication.principal.boardMember.idx}">\n' +
-                    '</th:block>'+
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
                     '      <label for="content" class="form-label">내용</label>\n' +
-                    '      <textarea class="form-control" id="content" rows="3" name="content" style="resize: none"></textarea>\n' +
+                    '      <textarea class="form-control" id="content" rows="20" cols="150" name="content" style="resize: none"></textarea>\n' +
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
                     '      <label for="formFile" class="form-label">사진</label>\n' +
@@ -58,8 +62,20 @@ function addpost()
             title : $('#title').val(),
             writer : $('#writer').val(),
             content : $('#content').val(),
+            nickname : $('#nickname').val(),
+            password : $('#password').val(),
             formFile : $('#formFile').val()
         }
 
-        $.ajax({url:'/post',type:'post',data:JSON.stringify(writePost),dataType:'JSON',contentType:'application/json',success:function (data) {}})
+    const imageInput = $("#formFile")[0];
+
+    const formData = new FormData();
+    formData.append("img", imageInput.files[0]);
+    formData.append("title",$('#title').val());
+    formData.append("writer",$('#writer').val());
+    formData.append("content",$('#content').val());
+    formData.append("nickname",$('#nickname').val());
+    formData.append("password",$('#password').val());
+
+        $.ajax({url:'/post',type:'post',data:formData,processData: false,contentType: false,success:function (data) {}})
 }

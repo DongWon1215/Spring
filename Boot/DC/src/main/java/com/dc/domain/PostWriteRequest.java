@@ -18,6 +18,7 @@ public class PostWriteRequest {
     private String writer;
     private String password;
     private String content;
+
     private MultipartFile img;
     private LocalDate writeDate;
 
