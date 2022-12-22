@@ -4,16 +4,13 @@ let body = $('#main-body');
 $(document).ready(function ()
 {
     setframe();
-
-
-
 })
 
 function setframe()
 {
     $.ajax(
         {
-            success:function (data)
+            success:function ()
             {
                 const newDiv = $('<div></div>');
                 let html = '<div class="card m-3">\n' +
@@ -34,29 +31,34 @@ function setframe()
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
                     '      <label for="content" class="form-label">내용</label>\n' +
-                    '      <textarea class="form-control" id="content" rows="3" name="content"></textarea>\n' +
+                    '      <textarea class="form-control" id="content" rows="3" name="content" style="resize: none"></textarea>\n' +
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
                     '      <label for="formFile" class="form-label">사진</label>\n' +
                     '      <input class="form-control" type="file" id="formFile" name="formFile">\n' +
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
-                    '      <button type="button" id="write_button" class="btn btn-primary">작성</button>' +
+                    '      <button type="button" id="write_button" onclick="javascript:addpost()" class="btn btn-primary">작성</button>' +
                     '    </div>\n' +
                     '  </form>' +
                     '</div>'
+
+                newDiv.html(html).addClass('fs-6 text-center');
+
+                body.append(newDiv);
             }
-                .then($('#write_button').click(addpost()))
         }
     )
 }
 
 function addpost()
 {
-
     const writePost =
         {
-
+            title : $('#title').val(),
+            writer : $('#writer').val(),
+            content : $('#content').val(),
+            formFile : $('#formFile').val()
         }
 
         $.ajax({url:'/post',type:'post',data:JSON.stringify(writePost),dataType:'JSON',contentType:'application/json',success:function (data) {}})

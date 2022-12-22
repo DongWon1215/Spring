@@ -1,29 +1,36 @@
 package com.dc.controller.Member;
 
 import com.dc.service.MemberService;
+import lombok.extern.log4j.Log4j2;
+import org.hibernate.ObjectDeletedException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/dropout")
+@Log4j2
 public class MemberDropOutController {
 
     @Autowired
     private MemberService memberService;
 
     @GetMapping
-    public String dropout()
+    public String gettext()
     {
-        return "redirect:/auth/dropout";
+        return "main";
     }
 
-    @PostMapping
-    public void dropout(@RequestParam("memberNum") Integer memberIndex)
+
+    @DeleteMapping("/{idx}")
+    public String dropout(@PathVariable("idx") Integer idx)
     {
-        memberService.withdrawalMemberByAdmin(memberIndex);
+        try {
+            memberService.withdrawalMemberByAdmin(idx);
+        }
+        catch (ObjectDeletedException e)
+        {
+            return "2";
+        }
+        return "1";
     }
 }

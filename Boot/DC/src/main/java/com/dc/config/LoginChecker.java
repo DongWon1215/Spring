@@ -13,10 +13,7 @@ public class LoginChecker {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception
     {
-        security.authorizeHttpRequests()
-                .antMatchers("/dropout").hasRole("ADMIN")
-                .antMatchers("/comment/photo").hasRole("USER")
-                .anyRequest().permitAll();
+        security.csrf().disable();
 
         security.formLogin();
 
