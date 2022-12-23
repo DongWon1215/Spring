@@ -35,13 +35,11 @@ function setframe()
 
 function setlist()
 {
-    $.getJSON('/post',function (data)
+    $.getJSON('/postlist',function (data)
         {
-            console.log(data);
             {
-                $.each(data,function (index,post)
+                $.each(data.list,function (index,post)
                 {
-                    console.log(post);
                     const newTR = $('<tr></tr>')
                     let html = '<td>'+post.idx+'</td>' +
                         '<td><a href="#">'+post.title+'</a></td>'+
@@ -52,6 +50,38 @@ function setlist()
                     newTR.html(html);
                     $('#postList').append(newTR);
                 })
+            pagingList(data);
+            }
+        }
+    )
+}
+
+function pagingList(paginginfo)
+{
+    $.ajax(
+        {
+            success:function (info)
+            {
+                const newNav = $('<nav aria-label="..."></nav>');
+                let html = '<ul class="pagination">\n' +
+                    '        <th:block th:if="'+paginginfo.isPrev+'">\n' +
+                    '        <li class="page-item">\n' +
+                    '          <a class="page-link" /*th:href="@{/postList/list(p=${'+paginginfo.startNum+' - 1})}"*/>&laquo;</a>\n' +
+                    '        </li>\n' +
+                    '        </th:block>\n' +
+                    '        <th:block th:each="num : ${#numbers.sequence('+paginginfo.startNum+','+paginginfo.endNum+')}" th:with="active=${'+paginginfo.curNum+' == num ? \'active\' : \'\'}">\n' +
+                    '          <li class="page-item" th:classappend="${active}">\n' +
+                    '            <a class="page-link" <!--th:href="@{/board/list(p=${num})}"--> th:text="${num}"></a>\n' +
+                    '          </li>\n' +
+                    '        </th:block>\n' +
+                    '        <th:block th:if="'+paginginfo.isNext+'">\n' +
+                    '        <li class="page-item">\n' +
+                    '          <a class="page-link" /*th:href="@{/postList/list(p=${'+paginginfo.endNum+' + 1})}"*/>&raquo;</a>\n' +
+                    '        </li>\n' +
+                    '        </th:block>\n' +
+                    '      </ul>'
+
+                newNav.html(html);
             }
         }
     )

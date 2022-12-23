@@ -25,9 +25,9 @@ public class CommentService {
         return repository.save(comment) != null ? 1 :0;
     }
 
-    public void delete(String writer, String password)
+    public void delete(String writer, String password, int idx)
     {
-        repository.deleteByWriterAndPassword(writer, password);
+        repository.deleteByWriterAndPassword(writer, password, idx);
     }
 
     public List<Comment> getCommentList(Integer postIndex)

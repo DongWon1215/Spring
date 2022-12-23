@@ -14,6 +14,11 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     @Transactional
     @Modifying
+    @Query("delete from Comment c where c.writer = ?1 and c.password = ?2 and c.idx = ?3")
+    int deleteByWriterAndPassword(String writer, String password, int idx);
+
+    @Transactional
+    @Modifying
     @Query("delete from Comment c where c.writer = ?1 and c.password = ?2")
     int deleteByWriterAndPassword(String writer, String password);
 

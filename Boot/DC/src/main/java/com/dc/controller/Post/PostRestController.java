@@ -24,10 +24,10 @@ public class PostRestController {
     @Autowired
     private PostService service;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Post>> viewPage()
+    @GetMapping(value = {"/{idx}"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Post> viewPage(@PathVariable("idx")Integer idx)
     {
-        return new ResponseEntity<>(service.getPostList(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findPostByIdx(idx), HttpStatus.OK);
     }
 
     @PostMapping
@@ -93,8 +93,12 @@ public class PostRestController {
     }
 
     @PutMapping({"/{index}"})
-    public ResponseEntity<Integer> updatePost(@RequestBody Post post, @RequestParam("img")MultipartFile img, @PathVariable("index") Integer postIndex)
-    {File saveDir = null;
+    public ResponseEntity<Integer> updatePost(PostWriteRequest writeRequest, @PathVariable("index") Integer postIndex)
+    {
+        MultipartFile img = writeRequest.getImg();
+        Post post = writeRequest.toPost();
+
+        File saveDir = null;
         String newFileName = null;
 
         HttpStatus http = HttpStatus.BAD_REQUEST;
@@ -126,6 +130,7 @@ public class PostRestController {
                 post.setImg(newFileName);
             http = HttpStatus.OK;
         }
+        post.setWriteDate(LocalDate.now());
         post.setIdx(postIndex);
         Integer result = service.updatePost(post);
         if(result < 1)

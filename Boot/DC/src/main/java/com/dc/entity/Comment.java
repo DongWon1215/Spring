@@ -22,9 +22,6 @@ public class Comment {
     @Column
     private Integer postIndex;
 
-    @Column
-    private String title;
-
     @Column(updatable = false)
     private String writer;
 

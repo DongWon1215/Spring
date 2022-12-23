@@ -18,7 +18,7 @@ public class CommentPhotoController {
 
     @GetMapping(value = "/upload/comment/photo/{filename}",produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
-    public ResponseEntity<byte[]> viewImg(@PathVariable("fileName") String fileName) throws IOException
+    public ResponseEntity<byte[]> viewImg(@PathVariable("filename") String fileName) throws IOException
     {
         byte[] imgByteArray = null;
         HttpStatus state = HttpStatus.NOT_FOUND;

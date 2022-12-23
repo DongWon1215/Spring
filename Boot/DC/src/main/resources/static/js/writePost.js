@@ -31,7 +31,6 @@ function setframe()
                     '      <input type="text" style="width: 800px" id="title" name="title">\n' +
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
-                    '<th:block th:if="${#authentication.principal">'+
                     '    </div>\n' +
                     '    <div class="mb-3">\n' +
                     '      <label for="content" class="form-label">내용</label>\n' +
@@ -57,16 +56,6 @@ function setframe()
 
 function addpost()
 {
-    const writePost =
-        {
-            title : $('#title').val(),
-            writer : $('#writer').val(),
-            content : $('#content').val(),
-            nickname : $('#nickname').val(),
-            password : $('#password').val(),
-            formFile : $('#formFile').val()
-        }
-
     const imageInput = $("#formFile")[0];
 
     const formData = new FormData();

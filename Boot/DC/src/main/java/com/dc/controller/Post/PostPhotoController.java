@@ -1,5 +1,7 @@
 package com.dc.controller.Post;
 
+import lombok.Cleanup;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +16,20 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Controller
+@Log4j2
 public class PostPhotoController {
 
     @GetMapping(value = "/upload/post/photo/{filename}",produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
-    public ResponseEntity<byte[]> viewImg(@PathVariable("fileName") String fileName) throws IOException
+    public ResponseEntity<byte[]> viewImg(@PathVariable("filename") String fileName) throws IOException
     {
         byte[] imgByteArray = null;
         HttpStatus state = HttpStatus.NOT_FOUND;
-
         File saveFile = new File(new File("").getAbsolutePath(),"resource\\meme\\"+fileName);
-
         if(saveFile.exists())
         {
-            InputStream inputStream = new FileInputStream(saveFile);
+            @Cleanup InputStream inputStream = new FileInputStream(saveFile);
             imgByteArray = inputStream.readAllBytes();
-            inputStream.close();
             state = HttpStatus.OK;
         }
 

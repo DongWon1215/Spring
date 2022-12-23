@@ -1,6 +1,6 @@
 package com.dc.domain;
 
-import com.dc.entity.Post;
+import com.dc.entity.Comment;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,16 +13,14 @@ import java.time.LocalDate;
 @ToString
 @Builder
 public class CommentWriteRequest {
-
-    private String title;
     private String writer;
     private String password;
     private String content;
     private MultipartFile img;
     private LocalDate writeDate;
 
-    public Post toPost()
+    public Comment toComment()
     {
-        return Post.builder().title(title).writer(writer).password(password).content(content).writeDate(writeDate).build();
+        return Comment.builder().writer(writer).password(password).content(content).writeDate(writeDate).build();
     }
 }
