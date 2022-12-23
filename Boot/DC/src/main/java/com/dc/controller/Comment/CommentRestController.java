@@ -154,8 +154,8 @@ public class CommentRestController {
 
 
     @DeleteMapping
-    public void deleteComment(@RequestBody CommentDeleteRequest request)
+    public ResponseEntity<Integer> deleteComment(@RequestBody CommentDeleteRequest request)
     {
-        commentService.delete(request.getId(), request.getPassword(), request.getIdx());
+        return new ResponseEntity<>(commentService.delete(request.getId(), request.getPassword(), request.getIdx()) < 1 ? 1 : 0,);
     }
 }

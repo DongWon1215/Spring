@@ -303,13 +303,14 @@ function deleteComment()
     {
         id : $('#deleter_id').val(),
         password : $('#deleter_password').val(),
-        index :
+        idx :$('#deleter_idx').val()
     }
 
+    // 지우는거 실패할 때  알람 날려야 되는데 못날리고 그냥 아무것도 안뜸 그거 고쳐야 됨
     $.ajax({url:'/comment',type:'delete',data:JSON.stringify(deleteRequest),dataType:'JSON',contentType:'application/json',success:function (data)
         {
             deletemodal.hide();
-            $('tr[tr-index="'+ deleteRequest.index +'"]').remove()
+            $('tr[tr-index="'+ data.idx +'"]').remove()
         }
         ,error:function (err)
         {
